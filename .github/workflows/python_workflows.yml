@@ -30,11 +30,15 @@ jobs:
           python-version: '3.10'
           cache: 'pip'
       
-      - name: Create and activate virtual environment
+      - name: Create archive of virtual environment
         run: |
-          python -m venv venv
-          source venv/bin/activate
-          pip install -r requirements.txt
+          tar -czf python-venv.tar.gz venv
+      
+      - name: Save Python environment
+        uses: actions/upload-artifact@v2
+        with:
+          name: python-venv
+          path: python-venv.tar.gz
 
       - name: Save Python environment
         uses: actions/upload-artifact@v2
