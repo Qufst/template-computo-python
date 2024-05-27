@@ -37,8 +37,10 @@ jobs:
           gh workflow run python_workflows.yml -f config-path='./config/python_config.yml'
 
       - name: Call Quarto Workflows
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run quartopublish_workflows.yml -f config-path= './config/quarto_config.yml' -f token=${{ secrets.REPO_DISPATCH_TOKEN }}
+          gh workflow run quartopublish_workflows.yml -f config-path= './config/quarto_config.yml' 
   
 
 
