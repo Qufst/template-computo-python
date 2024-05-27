@@ -1,6 +1,15 @@
 name: python
 
 on:
+  workflow_call:
+    inputs:
+      config-path:
+        required: true
+        type: string
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+
   workflow_dispatch:
     inputs:
       config-path:
@@ -27,11 +36,11 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
-
+      
       - name: Create archive of virtual environment
         run: |
           tar -czf python-venv.tar.gz venv
-
+      
       - name: Save Python environment
         uses: actions/upload-artifact@v2
         with:

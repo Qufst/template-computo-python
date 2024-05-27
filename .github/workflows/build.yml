@@ -13,14 +13,14 @@ jobs:
     with:
       config-path: './config/python_config.yml'
     secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
   call_publish_workflows:
     uses: ./.github/workflows/quartopublish_workflows.yml
     with:
       config-path: './config/quarto_config.yml'
     secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 
