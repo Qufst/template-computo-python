@@ -9,32 +9,19 @@ on:
 
 jobs:
   call_python_workflows:
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/python_workflows.yml
+    with:
+      config-path: './config/python_config.yml'
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+  
+  call_publish_workflows:
+    uses: ./.github/workflows/quartopublish_workflows.yml
+    with:
+      config-path: './config/quarto_config.yml'
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Install GitHub CLI
-        run: |
-          curl -fsSL https://github.com/cli/cli/releases/download/v2.26.1/gh_2.26.1_linux_amd64.tar.gz -o gh.tar.gz
-          tar xzf gh.tar.gz
-          sudo mv gh_2.26.1_linux_amd64/bin/gh /usr/local/bin/
-          gh --version
-
-      - name: Clear GH_TOKEN environment variable
-        run: |
-          unset GH_TOKEN
-
-      - name: Authenticate GitHub CLI
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-
-      - name: Call Python Workflows
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run python_workflows.yml -f config-path='./config/python_config.yml'
 
 
 
