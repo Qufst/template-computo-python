@@ -20,7 +20,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: python-venv
-          path: /home/runner/work/template-computo-python/template-computo-python/venv
+          path: venv
+
+      - name: Activate virtual environment
+        run: |
+          source venv/bin/activate
   
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2

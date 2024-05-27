@@ -30,20 +30,17 @@ jobs:
           python-version: '3.10'
           cache: 'pip'
       
-      - name: Installing dependencies from requirements
+      - name: Create and activate virtual environment
         run: |
+          python -m venv venv
+          source venv/bin/activate
           pip install -r requirements.txt
-
-      - name: Print workspace directory
-        run: |
-          echo "Workspace directory: ${{ github.workspace }}"
-
 
       - name: Save Python environment
         uses: actions/upload-artifact@v2
         with:
           name: python-venv
-          path: /home/runner/work/template-computo-python/template-computo-python/venv
+          path: ${{ github.workspace }}/venv
 
       - name: Call Quarto Workflows
         env:
