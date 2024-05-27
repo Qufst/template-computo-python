@@ -32,4 +32,4 @@ jobs:
       
       - name: Installing dependencies from requirements
         run: |
-          pip install -r ${{ github.event.inputs.config-path }}
+          pip install -r requirements.txt
