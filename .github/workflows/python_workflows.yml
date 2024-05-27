@@ -10,6 +10,12 @@ on:
       token:
         required: true
   workflow_dispatch:
+    inputs:
+      config-path:
+        description: "Chemin vers le fichier de configuration Python"
+        required: true
+        type: string
+
 
 jobs:
   dependencies:
