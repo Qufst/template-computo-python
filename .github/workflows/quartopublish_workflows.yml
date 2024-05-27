@@ -16,8 +16,8 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
   
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -33,7 +33,7 @@ jobs:
   
       - name: Install Computo extension for Quarto
         run: |
-            quarto add --no-prompt computorg/computo-quarto-extension
+          quarto add --no-prompt computorg/computo-quarto-extension
   
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
