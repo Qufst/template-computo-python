@@ -9,12 +9,6 @@ on:
     secrets:
       token:
         required: true
-  workflow_dispatch:
-    inputs:
-      config-path:
-        description:
-        required: true
-        type: string
 
 jobs:
   dependencies:
@@ -33,6 +27,12 @@ jobs:
       - name: Installing dependencies from requirements
         run: |
           pip install -r requirements.txt
+
+      - name: Save Python environment
+        uses: actions/upload-artifact@v2
+        with:
+          name: python-venv
+          path: venv
 
       - name: Call Quarto Workflows
         env:
