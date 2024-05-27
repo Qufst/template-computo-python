@@ -27,3 +27,10 @@ jobs:
       - name: Installing dependencies from requirements
         run: |
           pip install -r requirements.txt
+
+  call_publish_workflows:
+    uses: ./.github/workflows/quartopublish_workflows.yml
+    with:
+      config-path: './config/quarto_config.yml'
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
