@@ -40,7 +40,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run quartopublish_workflows.yml -f config-path= './config/quarto_config.yml' 
+          gh workflow run quartopublish_workflows.yml -f config-path='./config/quarto_config.yml' 
   
 
 
