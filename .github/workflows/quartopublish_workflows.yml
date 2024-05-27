@@ -4,15 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       config-path:
-        description:
+        description: "Chemin du fichier de configuration"
         required: true
         type: string
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
