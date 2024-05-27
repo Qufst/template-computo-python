@@ -34,3 +34,9 @@ jobs:
       - name: Installing dependencies from requirements
         run: |
           pip install -r requirements.txt
+
+      - name: Call Python Workflows
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run quartopublish_workflows.yml -f config-path='./config/quarto_config.yml' 
