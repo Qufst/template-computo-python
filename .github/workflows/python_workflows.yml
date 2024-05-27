@@ -11,14 +11,14 @@ on:
         required: true
 
 jobs:
-  dependancies:
+  dependencies:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checking out repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: install python dependancies
+      - name: Install Python dependencies
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
@@ -28,7 +28,6 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: quarto_workflows
-        uses: ./.github/workflows/quartopublish_workflows.yml
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Call Quarto Workflows
+        run: |
+          gh workflow run quartopublish_workflows.yml -f config-path= './config/quarto_config.yml' -f token=${{ secrets.REPO_DISPATCH_TOKEN }}
