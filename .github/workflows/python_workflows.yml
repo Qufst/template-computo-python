@@ -33,3 +33,7 @@ jobs:
       - name: Installing dependencies from requirements
         run: |
           pip install -r requirements.txt
+
+      - name: Call Quarto Workflows
+        run: |
+          gh workflow run quartopublish_workflows.yml -f config-path='./config/quarto_config.yml'
