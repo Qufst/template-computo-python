@@ -32,8 +32,8 @@ jobs:
       
       - name: Install Python dependencies
         run: |
-          python -m venv abc
-          source abc/bin/activate
+          python -m venv ./environment/abc
+          source ./environment/abc/bin/activate
           pip install -r requirements.txt
 
       - name: Call Quarto Workflows
