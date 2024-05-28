@@ -15,10 +15,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-          
-      - name: Activate virtual environment
-        run: |
-          source abc/bin/activate
   
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
