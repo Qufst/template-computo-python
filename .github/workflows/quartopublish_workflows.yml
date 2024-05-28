@@ -16,6 +16,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: List available artifacts
+        run: |
+          gh run list --limit 1 --json artifacts
+
       - name: Download artifacts from Premier Workflow
         uses: actions/download-artifact@v2
         with:
