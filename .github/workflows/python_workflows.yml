@@ -46,9 +46,3 @@ jobs:
         with:
           name: my-artifact
           path: abc.zip
-
-      - name: Call Quarto Workflows
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run quartopublish_workflows.yml -f config-path='./config/quarto_config.yml'

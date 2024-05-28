@@ -8,7 +8,7 @@ on:
         required: true
         type: string
   workflow_run:
-    workflows: ["Premier Workflow"]
+    workflows: ["python_workflows"]
     types:
       - completed
 
