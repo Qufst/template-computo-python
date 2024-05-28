@@ -16,11 +16,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: List available artifacts
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh run list --limit 1 --json artifacts
+      - name: Retrieve environment variable
+        run: echo ${{ env.ARTIFACT_PATH }}
+
 
       - name: Download artifacts from Premier Workflow
         uses: actions/download-artifact@v2
