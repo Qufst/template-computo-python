@@ -36,11 +36,16 @@ jobs:
           source ./abc/bin/activate
           pip install -r requirements.txt
       
+
+      - name: Archive the environment
+        run: |
+          zip -r abc.zip ./abc
+
       - name: Publish artifacts
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact
-          path: ./abc
+          path: abc.zip
 
       - name: Call Quarto Workflows
         env:
