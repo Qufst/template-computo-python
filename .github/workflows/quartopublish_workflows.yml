@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Retrieve environment variable
-        run: echo ${{ env.ARTIFACT_PATH }}
+        run: echo env.abc.zip 
 
 
       - name: Download artifacts from Premier Workflow
