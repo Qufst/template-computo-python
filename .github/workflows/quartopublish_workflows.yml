@@ -1,18 +1,10 @@
-name: quartopublish_workflows
+name: publish
 
 on:
-  workflow_call:
-    inputs:
-      config-path:
-        required: true
-        type: string
-    secrets:
-      GITHUB_TOKEN:
-        required: true
   workflow_dispatch:
     inputs:
       config-path:
-        description: 'Path to the configuration file'
+        description:
         required: true
         type: string
 
@@ -23,40 +15,40 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
+  
       - name: Download Python environment
         uses: actions/download-artifact@v2
         with:
           name: python-venv
-          path: .
-
+          path: abc
+          
       - name: Extract virtual environment
         run: |
           tar -xzf python-venv.tar.gz
-
+          
       - name: Activate virtual environment
         run: |
-          source venv/bin/activate
-
+          source abc/bin/activate
+  
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
-
+  
       - name: Register TinyTeX globally for diagram.lua
         run: |
           mkdir -p ~/.local/bin
           ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin
           ~/.TinyTeX/bin/x86_64-linux/tlmgr path add
           ~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts
-
+  
       - name: Install Computo extension for Quarto
         run: |
           quarto add --no-prompt computorg/computo-quarto-extension
-
+  
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}

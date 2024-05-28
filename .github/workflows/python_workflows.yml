@@ -1,4 +1,3 @@
-
 name: python
 
 on:
@@ -8,12 +7,12 @@ on:
         required: true
         type: string
     secrets:
-      GITHUB_TOKEN:
+      token:
         required: true
   workflow_dispatch:
     inputs:
       config-path:
-        description: 'Path to the configuration file'
+        description:
         required: true
         type: string
 
@@ -25,24 +24,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: Install Python dependencies
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
           cache: 'pip'
-
-      - name: Create and activate virtual environment
-        run: |
-          python -m venv venv
-          source venv/bin/activate
-          pip install -r requirements.txt
-
+      
+      - name: Create virtual environment
+        run: python -m venv abc
+        
       - name: Create archive of virtual environment
         run: |
-          tar -czf python-venv.tar.gz venv
-
+          tar -czf python-venv.tar.gz abc
+      
       - name: Save Python environment
         uses: actions/upload-artifact@v2
         with:
           name: python-venv
           path: python-venv.tar.gz
+
+      - name: Call Quarto Workflows
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run quartopublish_workflows.yml -f config-path='./config/quarto_config.yml'
