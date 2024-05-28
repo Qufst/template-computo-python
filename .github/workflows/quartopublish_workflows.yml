@@ -7,12 +7,20 @@ on:
         description:
         required: true
         type: string
+  workflow_run:
+    workflows: ["Premier Workflow"]
+    types:
+      - completed
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
+      - name: Download artifacts from Premier Workflow
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+          path: ~/abc
           
       - name: Activate virtual environment
         run: |

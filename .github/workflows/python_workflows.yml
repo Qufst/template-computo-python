@@ -36,8 +36,11 @@ jobs:
           source ./abc/bin/activate
           pip install -r requirements.txt
       
-      - name: Check virtual environment directory
-        run: ls -la ./abc
+      - name: Publish artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: ~/abc
 
       - name: Call Quarto Workflows
         env:
