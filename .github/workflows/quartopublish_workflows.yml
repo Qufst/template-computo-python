@@ -8,7 +8,7 @@ on:
         required: true
         type: string
   workflow_run:
-    workflows: ["python_workflows"]
+    workflows: ["python_workflows.yml"]
     types:
       - completed
 
@@ -16,15 +16,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Retrieve environment variable
-        run: echo env.abc.zip 
-
 
       - name: Download artifacts from Premier Workflow
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: my-artifact
-          path: .
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }} # ID du workflow qui a produit l'artefact
 
       - name: Unzip the artifact
         run: |

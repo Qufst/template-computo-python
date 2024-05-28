@@ -51,6 +51,8 @@ jobs:
         run: |
           echo "ARTIFACT_PATH=abc.zip" >> $GITHUB_ENV
 
+      - name: Afficher l'ID du workflow
+        run: echo "L'ID du workflow est ${{ github.event.workflow_run.id }}"
 
       - name: Call Quarto Workflows
         env:
