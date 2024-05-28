@@ -30,8 +30,11 @@ jobs:
           python-version: '3.10'
           cache: 'pip'
       
-      - name: Create virtual environment
-        run: python -m venv abc
+      - name: Install Python dependencies
+        run: |
+          python -m venv abc
+          source abc/bin/activate
+          pip install -r requirements.txt
         
       - name: Create archive of virtual environment
         run: |
@@ -41,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: python-venv
-          path: python-venv.tar.gz
+          path: python-venv.tar.gz  
 
       - name: Call Quarto Workflows
         env:
