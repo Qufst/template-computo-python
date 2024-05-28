@@ -41,6 +41,24 @@ jobs:
         run: |
           zip -r abc.zip ./abc
 
+          - name: Delete existing artifacts
+          uses: actions/github-script@v4
+          with:
+            script: |
+              const { data: artifacts } = await github.actions.listArtifactsForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+              for (const artifact of artifacts.artifacts) {
+                if (artifact.name === 'my-artifact') {
+                  await github.actions.deleteArtifact({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    artifact_id: artifact.id
+                  });
+                }
+              }
+              
       - name: Publish artifacts
         uses: actions/upload-artifact@v4
         with:

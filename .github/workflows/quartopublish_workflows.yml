@@ -28,11 +28,11 @@ jobs:
             response.data.artifacts.forEach(artifact => {
               console.log(`Artifact: ${artifact.name}`);
             });
-            
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
-          name: my-artifact
+          name: 'my-artifact'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Unzip the artifact
