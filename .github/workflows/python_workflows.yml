@@ -35,16 +35,6 @@ jobs:
           python -m venv abc
           source abc/bin/activate
           pip install -r requirements.txt
-        
-      - name: Create archive of virtual environment
-        run: |
-          tar -czf python-venv.tar.gz abc
-      
-      - name: Save Python environment
-        uses: actions/upload-artifact@v2
-        with:
-          name: python-venv
-          path: python-venv.tar.gz  
 
       - name: Call Quarto Workflows
         env:

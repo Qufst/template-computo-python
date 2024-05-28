@@ -22,10 +22,6 @@ jobs:
           name: python-venv
           path: .
           
-      - name: Extract virtual environment
-        run: |
-          tar -xzf python-venv.tar.gz
-          
       - name: Activate virtual environment
         run: |
           source abc/bin/activate
