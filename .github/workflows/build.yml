@@ -28,7 +28,7 @@ jobs:
 
       - name: Check commit message
         run: |
-          if [[ "$(git log -1 --pretty=%B)" != "py_commit" ]]; then
+          if [[ "$(git log --format=%B -n 1 HEAD)" != "py_commit" ]]; then
             echo "Proceeding with python_workflows..."
             # Trigger python_workflows.yml
             gh workflow run python_workflows.yml -f config-path='./config/python_config.yml'

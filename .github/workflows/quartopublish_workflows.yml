@@ -16,14 +16,7 @@ on:
         description:
         required: true
         type: string
-  workflow_run:
-    workflows: ["python_workflows.yml"]
-    types:
-      - completed
-  push:
-    branches:
-      - main
-
+        
 jobs:
   build:
     runs-on: ubuntu-latest
