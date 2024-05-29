@@ -1,26 +1,28 @@
-name: build
+  name: build
 
-on:
-  schedule:
-    - cron: '0 0 * * 0'
-  workflow_dispatch:
-  push:
-    branches: main
+  on:
+    schedule:
+      - cron: '0 0 * * 0'
+    workflow_dispatch:
+    push:
+      branches: main
 
-jobs:
-  Checkout_Repository:
-    uses: actions/checkout@v3
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
 
-  python:
-    uses: ./.github/workflows/python_workflows.yml
-    with:
-      config-path: ./config/python.yml
-    secrets:
-      token: ${{ secrets.REPO_DISPATCH_TOKEN }}
+    python:
+      uses: ./.github/workflows/python_workflows.yml
+      with:
+        config-path: ./config/python.yml
+      secrets:
+        token: ${{ secrets.REPO_DISPATCH_TOKEN }}
 
-  publish:
-    uses: ./.github/workflows/quartopublish_workflows.yml
-    with:
-      config-path: ./config/python.yml
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+    publish:
+      uses: ./.github/workflows/quartopublish_workflows.yml
+      with:
+        config-path: ./config/python.yml
+      secrets:
+        token: ${{ secrets.GITHUB_TOKEN }}
