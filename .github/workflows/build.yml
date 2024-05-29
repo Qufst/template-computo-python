@@ -8,6 +8,9 @@ on:
     branches: main
 
 jobs:
+  Checkout_Repository:
+    uses: actions/checkout@v3
+
   python:
     uses: ./.github/workflows/python_workflows.yml
     with:
