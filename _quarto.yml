@@ -1,2 +1,12 @@
 project:
+  type: website
   title: "template-computo-python"
+  output-dir: _site
+
+website:
+  title: "template-computo-python"
+  navbar:
+    title: "template-computo-python"
+    left:
+      - text: "Accueil"
+        href: template-computo-python.qmd
