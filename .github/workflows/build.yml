@@ -1,26 +1,22 @@
-  name: build
+name: Main Workflows
 
-  on:
-    schedule:
-      - cron: '0 0 * * 0'
-    workflow_dispatch:
-    push:
-      branches: main
+on:
+  push:
+    branches:
+      - main
 
-  jobs:
-    python_and_publish:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v3
-        
-        - name: Run Python Workflows
-          run: ./.github/workflows/python_workflows.yml
-          env:
-            GITHUB_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
-  
-        - name: Publish with Quarto
-          run: ./.github/workflows/quartopublish_workflows.yml
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
+jobs:
+  check_commit_and_dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check commit message
+        run: |
+          if [[ "$(git log -1 --pretty=%B)" != "py_commit" ]]; then
+            echo "Proceeding with python_workflows..."
+            # Trigger python_workflows.yml
+            gh workflow run python_workflows.yml -f config-path='./config/python_config.yml'
+          else
+            echo "Commit message is 'py_commit'. Triggering quartopublish_workflows..."
+            # Trigger quartopublish_workflows.yml
+            gh workflow run quartopublish_workflows.yml -f config-path='./config/quarto_config.yml'
+          fi

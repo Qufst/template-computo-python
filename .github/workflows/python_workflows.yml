@@ -28,4 +28,14 @@ jobs:
           python-version: '3.10'
           cache: 'pip'
       - run: pip install -r requirements.txt
+
+      # Enregistrement de l'environnement en tant que fichier zip
+      - name: Package environment as zip
+        run: zip -r environment.zip .  # Assurez-vous d'être dans le bon répertoire
+
+      # Ajout du chemin de l'environnement zippé en sortie
+      - name: Output environment zip path
+        id: output_env_path
+        run: echo "::set-output name=env_zip_path::$(pwd)/environment.zip"
+
       
