@@ -1,6 +1,15 @@
 name: publish
 
 on:
+  workflow_call:
+    inputs:
+      config-path:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
+
   workflow_dispatch:
     inputs:
       config-path:
@@ -17,32 +26,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: List artifacts
-        uses: actions/github-script@v4
-        with:
-          script: |
-            const response = await github.actions.listArtifactsForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo
-            });
-            response.data.artifacts.forEach(artifact => {
-              console.log(`Artifact: ${artifact.name}`);
-            });
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: 'my-artifact'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Unzip the artifact
-        run: |
-          unzip abc.zip
-          
-      - name: Activate virtual environment
-        run: |
-          source ./abc/bin/activate
-  
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
