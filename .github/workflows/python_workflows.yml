@@ -55,5 +55,4 @@ jobs:
           git config --global user.name "Qufst"
           git checkout main
           git commit --allow-empty -m "py_commit"
-          git remote set-url origin https://github.com/Qufst/template-computo-python.git
           git push origin main
