@@ -53,6 +53,8 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git commit --allow-empty -m "py commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
       
