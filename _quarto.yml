@@ -1,7 +1,7 @@
 project:
   type: website
   title: "template-computo-python"
-  output-dir: _site
+  output-dir: gh-pages
 
 website:
   title: "template-computo-python"
