@@ -6,7 +6,7 @@
     workflow_dispatch:
     push:
       branches: main
-      
+
   jobs:
     python_and_publish:
       runs-on: ubuntu-latest
@@ -15,16 +15,12 @@
           uses: actions/checkout@v3
         
         - name: Run Python Workflows
-          uses: ./.github/workflows/python_workflows.yml
-          with:
-            config-path: ./config/python.yml
+          run: ./.github/workflows/python_workflows.yml
           env:
             GITHUB_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
   
         - name: Publish with Quarto
-          uses: ./.github/workflows/quartopublish_workflows.yml
-          with:
-            config-path: ./config/python.yml
+          run: ./.github/workflows/quartopublish_workflows.yml
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
