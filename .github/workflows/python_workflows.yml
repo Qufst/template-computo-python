@@ -56,7 +56,4 @@ jobs:
           git checkout main
           git commit --allow-empty -m "py commit"
           git remote set-url origin https://github.com/Qufst/template-computo-python.git
-          git push $GITHUB_REPOSITORY_URL origin main
-
-
-      
+          git push origin main
