@@ -20,4 +20,4 @@ jobs:
     with:
       config-path: ./config/python.yml
     secrets:
-      token: ${{ secrets.REPO_DISPATCH_TOKEN }}
+      token: ${{ secrets.GITHUB_TOKEN }}
