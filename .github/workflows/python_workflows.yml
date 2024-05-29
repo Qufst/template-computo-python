@@ -51,7 +51,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add environment.zip
+          git add ./abc.zip
           git commit "py commit"
           git push
 
