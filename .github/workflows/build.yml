@@ -18,6 +18,6 @@ jobs:
   publish:
     uses: ./.github/workflows/quartopublish_workflows.yml
     with:
-      config-path: ./
+      config-path: ./config/python.yml
     secrets:
       token: ${{ secrets.REPO_DISPATCH_TOKEN }}
