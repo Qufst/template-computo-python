@@ -46,15 +46,17 @@ jobs:
           name: my-artifact
           path: ./abc.zip
 
-
-      - name: create commit
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git commit --allow-empty -m "py commit"
-          git push
+      - name: Trigger external workflow with empty commit
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
+          GITHUB_REPOSITORY_URL: https://x-access-token:${{ secrets.REPO_DISPATCH_TOKEN }}@github.com/Qufst/projet-personnel-m-t-o.git
+        run: |
+          git config --global user.email "quentin.festor@etu.umontpellier.fr"
+          git config --global user.name "Qufst"
+          git checkout main
+          git commit --allow-empty -m "Trigger workflow from another repo"
+          git remote set-url origin https://github.com/Qufst/template-computo-python.git
+          git push $GITHUB_REPOSITORY_URL origin main
 
 
       
