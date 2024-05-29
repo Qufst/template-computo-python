@@ -20,6 +20,9 @@ on:
     workflows: ["python_workflows.yml"]
     types:
       - completed
+  push:
+    branches:
+      - main
 
 jobs:
   build:
