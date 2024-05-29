@@ -54,7 +54,7 @@ jobs:
           git config --global user.email "quentin.festor@etu.umontpellier.fr"
           git config --global user.name "Qufst"
           git checkout main
-          git commit --allow-empty -m "Trigger workflow from another repo"
+          git commit --allow-empty -m "py commit"
           git remote set-url origin https://github.com/Qufst/template-computo-python.git
           git push $GITHUB_REPOSITORY_URL origin main
 
