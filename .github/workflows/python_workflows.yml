@@ -49,7 +49,7 @@ jobs:
       - name: Trigger external workflow with empty commit
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
-          GITHUB_REPOSITORY_URL: https://x-access-token:${{ secrets.REPO_DISPATCH_TOKEN }}@github.com/Qufst/projet-personnel-m-t-o.git
+          GITHUB_REPOSITORY_URL: https://x-access-token:${{ secrets.REPO_DISPATCH_TOKEN }}@github.com/Qufst/template-computo-python.git
         run: |
           git config --global user.email "quentin.festor@etu.umontpellier.fr"
           git config --global user.name "Qufst"
