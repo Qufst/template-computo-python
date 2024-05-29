@@ -33,6 +33,7 @@ jobs:
         run: |
           git clone https://github.com/Qufst/template-computo-python.git
           cd template-computo-python
+
       - name: Install Python dependencies
         uses: actions/setup-python@v2
         with:
@@ -64,5 +65,5 @@ jobs:
             git config --local user.name "Your Name"
             echo "Some changes" >> example.txt
             git add example.txt
-            git commit -m "py_commit from workflow" --allow-empty
+            git commit -m "py_commit" --allow-empty
             git push origin main
