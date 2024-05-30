@@ -52,7 +52,7 @@ jobs:
 
       - name: Decompress virtual environment
         run: |
-          unzip ./venv.zip
+          unzip ./venv.zip/venv.zip
 
 
       - name: Activate virtual environment and run commands
