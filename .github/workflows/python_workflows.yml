@@ -56,10 +56,6 @@ jobs:
       - name: Save cache key
         run: echo "CACHE_KEY=${{ steps.cache-pip.outputs.cache-hit }}" > $GITHUB_ENV
 
-      - name: Call Quarto Workflows
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run quartopublish_workflows.yml -f config-path='./config/quarto_config.yml'
+
         
 
