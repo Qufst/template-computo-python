@@ -46,7 +46,7 @@ jobs:
 
       - name: Verify .zip
         run: |
-          find /chemin/du/repertoire -type f -name "*.zip" -exec ls -l {} \;
+          find ./ -type f -name "*.zip" -exec ls -l {} \;
 
 
 
