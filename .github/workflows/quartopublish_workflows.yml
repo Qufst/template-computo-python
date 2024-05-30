@@ -52,12 +52,12 @@ jobs:
 
       - name: Decompress virtual environment
         run: |
-          unzip ./venv/venv
+          unzip ./venv.zip/venv.zip
 
 
       - name: Activate virtual environment and run commands
         run: |
-          source ./venv.zip/bin/activate
+          source ./venv/venv/bin/activate
           python --version
           pip list
 
