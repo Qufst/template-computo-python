@@ -44,12 +44,10 @@ jobs:
           name: python-venv
           path: venv.zip
 
-      - name: Verify artifact download2
+      - name: Verify .zip
         run: |
-          if [ ! -f ./venv.zip ]; then
-            echo "Artifact ./template-computo-python/venv.zip not found"
-            exit
-          fi
+          ls -l *.zip
+
 
       - name: Decompress virtual environment
         run: |
