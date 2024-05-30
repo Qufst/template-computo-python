@@ -47,7 +47,6 @@ jobs:
           ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin
           ~/.TinyTeX/bin/x86_64-linux/tlmgr path add
           ~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts
-          source ./abc/bin/activate
   
       - name: Install Computo extension for Quarto
         run: |
