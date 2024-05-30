@@ -46,7 +46,7 @@ jobs:
 
       - name: Decompress virtual environment
         run: |
-          unzip venv.zip
+          unzip /home/runner/work/template-computo-python/template-computo-python/venv.zip
 
       - name: Activate virtual environment and run commands
         run: |
