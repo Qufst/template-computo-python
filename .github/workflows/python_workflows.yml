@@ -35,9 +35,11 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
-  
-      - name: Install Python dependencies
+
+      - name: Create virtual environment and install dependencies
         run: |
+          python -m venv ./venv
+          source ./venv/bin/activate
           pip install -r requirements.txt
 
       - name: Cache pip dependencies
@@ -46,13 +48,20 @@ jobs:
         with:
           path: |
             ~/.cache/pip
+            ./venv  
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
       
-      
-      - name: Save cache key
-        run: echo "CACHE_KEY=${{ steps.cache-pip.outputs.cache-hit }}" > $GITHUB_ENV
+      - name: Compress virtual environment
+        run: |
+          zip -r venv.zip ./venv
+
+      - name: Upload virtual environment as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: python-venv
+          path: venv.zip
 
 
 

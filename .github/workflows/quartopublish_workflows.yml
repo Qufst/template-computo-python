@@ -25,15 +25,34 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
       - name: Restore pip dependencies cache
         id: restore-cache
         uses: actions/cache@v3
         with:
-          path: |
-            ~/.cache/pip
+          path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Download virtual environment artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: python-venv
+          path: venv.zip
+
+      - name: Decompress virtual environment
+        run: |
+          unzip venv.zip
+
+      - name: Activate virtual environment and run commands
+        run: |
+          source ./venv/bin/activate
+          python --version
+          pip list
 
 
       - name: Set up Quarto
@@ -41,7 +60,7 @@ jobs:
         with:
           tinytex: true
   
-      - name: Register TinyTeX globally for diagram.lua and activate abc
+      - name: Register TinyTeX globally for diagram.lua
         run: |
           mkdir -p ~/.local/bin
           ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin
