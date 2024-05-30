@@ -1,12 +1,10 @@
 name: Main Workflows
 
 on:
-  schedule:
-    - cron: '0 7 * * *'
   push:
     branches: ["main"]
   repository_dispatch:
-    types: [custom-event]  # Déclencheur pour l'événement repository_dispatch
+    types: [custom-event] 
 
 
 jobs:
@@ -30,15 +28,6 @@ jobs:
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
 
-      - name: Check commit message
+      - name: run python_workflows
         run: |
-          if [[ "$(git log --format=%B -n 1 HEAD)" != "py_commit" ]]; then
-            echo "Proceeding with python_workflows..."
-            # Trigger python_workflows.yml
-            gh workflow run python_workflows.yml -f config-path='./config/python_config.yml'
-          fi
-          if [[ "$(git log --format=%B -n 1 HEAD)" == "py_commit" ]]; then
-            echo "Commit message is 'py_commit'. Triggering quartopublish_workflows..."
-            # Trigger quartopublish_workflows.yml
-            gh workflow run quartopublish_workflows.yml -f config-path='./config/quarto_config.yml'
-          fi
+          gh workflow run python_workflows.yml -f config-path='./config/python_config.yml'
