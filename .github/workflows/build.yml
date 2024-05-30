@@ -32,7 +32,7 @@ jobs:
             echo "Proceeding with python_workflows..."
             # Trigger python_workflows.yml
             gh workflow run python_workflows.yml -f config-path='./config/python_config.yml'
-          else
+            if [[ "$(git log --format=%B -n 1 HEAD)" == "py_commit" ]]; then
             echo "Commit message is 'py_commit'. Triggering quartopublish_workflows..."
             # Trigger quartopublish_workflows.yml
             gh workflow run quartopublish_workflows.yml -f config-path='./config/quarto_config.yml'

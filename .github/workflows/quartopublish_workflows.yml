@@ -26,42 +26,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: List artifacts
-        uses: actions/github-script@v4
+      - name: Restore pip dependencies cache
+        id: restore-cache
+        uses: actions/cache@v3
         with:
-          script: |
-            const response = await github.actions.listArtifactsForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo
-            });
-            response.data.artifacts.forEach(artifact => {
-              console.log(`Artifact: ${artifact.name}`);
-            });
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: 'my-artifact'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: |
+            ~/.cache/pip
+            ./abc
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
-      - name: Unzip the artifact
-        run: |
-          unzip abc.zip
-          
-      - name: Activate virtual environment
-        run: |
-          source ./abc/bin/activate
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
   
-      - name: Register TinyTeX globally for diagram.lua
+      - name: Register TinyTeX globally for diagram.lua and activate abc
         run: |
           mkdir -p ~/.local/bin
           ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin
           ~/.TinyTeX/bin/x86_64-linux/tlmgr path add
           ~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts
+          source ./abc/bin/activate
   
       - name: Install Computo extension for Quarto
         run: |
