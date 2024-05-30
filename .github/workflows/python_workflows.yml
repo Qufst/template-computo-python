@@ -63,6 +63,10 @@ jobs:
           name: python-venv
           path: venv.zip
 
+      - name: Call Quarto Workflows
+        run: |
+          gh workflow run quartopublish_workflows.yml -f config-path='./config/quarto_config.yml'
+
 
 
         
