@@ -44,9 +44,23 @@ jobs:
           name: python-venv
           path: venv.zip
 
+      - name: Verify artifact download
+        run: |
+          if [ ! -f venv.zip ]; then
+            echo "Artifact venv.zip not found"
+            exit 1
+          fi
+      - name: Verify artifact download2
+        run: |
+          if [ ! -f /home/runner/work/template-computo-python/template-computo-python/venv.zip ]; then
+            echo "Artifact /home/runner/work/template-computo-python/template-computo-python/venv.zip not found"
+            exit 1
+          fi
+
       - name: Decompress virtual environment
         run: |
-          tar -xf /home/runner/work/template-computo-python/template-computo-python/venv.zip
+          unzip /home/runner/work/template-computo-python/template-computo-python/venv.zip
+
 
       - name: Activate virtual environment and run commands
         run: |
