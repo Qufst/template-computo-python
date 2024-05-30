@@ -66,5 +66,7 @@ jobs:
         run: |
             git config --local user.email "quentin.festor@etu.umontpellier.com"
             git config --local user.name "Qufst"
+            git checkout main
             git commit --allow-empty -m "py_commit"
-            git push origin main
+            git remote set-url origin https://github.com/Qufst/template-computo-python.git
+            git push https://github.com/Qufst/template-computo-python origin main
