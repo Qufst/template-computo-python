@@ -1,6 +1,8 @@
 name: python
 
 on:
+  repository_dispatch:
+    types: [custom-event] 
   workflow_call:
     inputs:
       config-path:
@@ -15,10 +17,7 @@ on:
         description:
         required: true
         type: string
-  workflow_run:
-    workflows: ["python_workflows.yml"]
-    types:
-      - completed
+
 
 jobs:
   dependencies:
