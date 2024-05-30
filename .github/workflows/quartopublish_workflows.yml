@@ -46,7 +46,8 @@ jobs:
 
       - name: Verify .zip
         run: |
-          ls -l *.zip
+          find /chemin/du/repertoire -type f -name "*.zip" -exec ls -l {} \;
+
 
 
       - name: Decompress virtual environment
