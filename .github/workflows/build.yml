@@ -1,9 +1,13 @@
 name: Main Workflows
 
 on:
+  schedule:
+    - cron: '0 7 * * *'
   push:
-    branches:
-      - main
+    branches: ["main"]
+  repository_dispatch:
+    types: [custom-event]  # Déclencheur pour l'événement repository_dispatch
+
 
 jobs:
   check_commit_and_dispatch:
