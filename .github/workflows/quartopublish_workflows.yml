@@ -55,13 +55,6 @@ jobs:
           unzip ./venv.zip/venv.zip
 
 
-      - name: Activate virtual environment and run commands
-        run: |
-          source ./venv/bin/activate
-          python --version
-          pip list
-
-
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -78,9 +71,13 @@ jobs:
         run: |
           quarto add --no-prompt computorg/computo-quarto-extension
   
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
+      - name: Publish with Quarto + activate environment
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          QUARTO_PUBLISHER: gh-pages
+        run: |
+          source ./venv/bin/activate
+          python --version
+          pip list
+          quarto publish
+
+ 
