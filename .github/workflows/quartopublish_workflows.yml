@@ -23,7 +23,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -43,11 +43,6 @@ jobs:
         with:
           name: python-venv
           path: venv.zip
-
-      - name: Verify .zip
-        run: |
-          find ./ -type f -name "*.zip" -exec ls -l {} \;
-
 
 
       - name: Decompress virtual environment
