@@ -1,18 +1,2 @@
 project:
-  type: website
-  output-dir: gh-pages
-
-website:
   title: "template-computo-python"
-  page-navigation: true
-  repo-url: https://github.com/Qufst/template-computo-python
-  repo-actions: [source, issue]
-  
-  navbar:
-    tools: 
-      - icon: github
-        href: https://github.com/Qufst/template-computo-python
-        text: GitHub
-    left:
-      - href: ./template-computo-python.qmd
-        text: Home
