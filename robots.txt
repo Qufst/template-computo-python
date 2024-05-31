@@ -1,1 +1,0 @@
-Sitemap: https://Qufst.github.io/template-computo-python/sitemap.xml
