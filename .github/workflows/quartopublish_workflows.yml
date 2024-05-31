@@ -71,18 +71,13 @@ jobs:
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
   
-      - name: activate environment
+      - name: Publish with Quarto + activate environment
+        env:
+          QUARTO_PUBLISHER: gh-pages
         run: |
-          source venv_unzip/venv/bin/activate
+          source ./venv/bin/activate
           python --version
           pip list
-
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          quarto publish
 
  
