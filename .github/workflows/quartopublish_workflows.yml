@@ -57,7 +57,7 @@ jobs:
 
       - name: Activate virtual environment and run commands
         run: |
-          source ./venv/venv/bin/activate
+          source ./venv/bin/activate
           python --version
           pip list
 
