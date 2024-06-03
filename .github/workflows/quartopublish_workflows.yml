@@ -9,12 +9,6 @@ on:
     secrets:
       token:
         required: true
-  workflow_dispatch:
-    inputs:
-      config-path:
-        description:
-        required: true
-        type: string
         
 jobs:
   build:
