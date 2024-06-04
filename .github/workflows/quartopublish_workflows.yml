@@ -39,9 +39,13 @@ jobs:
           name: conda-env
           path: env.tar.gz
 
+      - name: ls
+        run: |
+          ls env.tar.gz
+
       - name: Decompress conda environment
         run: |
-          tar -xzvf env.tar.gz.tar.gz
+          tar -xzvf env.tar.gz
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
