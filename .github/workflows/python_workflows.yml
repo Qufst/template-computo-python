@@ -35,7 +35,7 @@ jobs:
       - name: Create conda environment and install dependencies
         run: |
           mamba create --yes --name myenv python=3.10
-          source activate myenv
+          mamba activate myenv
           pip install -r requirements.txt
 
       - name: Cache conda environment

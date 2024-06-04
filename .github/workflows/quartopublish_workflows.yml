@@ -68,7 +68,5 @@ jobs:
         env:
           QUARTO_PUBLISHER: gh-pages
         run: |
-          source activate myenv
-          python --version
-          pip list
+          mamba activate myenv
           quarto publish template-computo-python.qmd
