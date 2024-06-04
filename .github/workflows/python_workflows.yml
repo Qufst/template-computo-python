@@ -27,13 +27,13 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
-          use-mamba: true
 
       - name: Install mamba
         run: conda install -c conda-forge mamba
 
       - name: Create conda environment and install dependencies
         run: |
+          mamba init --all
           mamba create --yes --name myenv python=3.10
           mamba activate myenv
           pip install -r requirements.txt
