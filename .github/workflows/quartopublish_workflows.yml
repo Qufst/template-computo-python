@@ -38,12 +38,9 @@ jobs:
           name: python-venv
           path: venv.tar.gz
 
-      - name: list tar.gz
-        run: |
-          ls * .tar.gz
       - name: Decompress virtual environment
         run: |
-          tar -xzvf venv.tar.gz -C ./venv
+          tar -xzvf venv.tar.gz/venv.tar.gz -C ./venv
 
 
       - name: Set up Quarto
