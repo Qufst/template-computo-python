@@ -43,10 +43,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-conda-
 
-      - name: ls
+      - name: ls myenv
         run: |
-          ls ./
-          ls ./usr/share/miniconda/envs
+          ls * myenv
 
       - name: Compress conda environment
         run: |
