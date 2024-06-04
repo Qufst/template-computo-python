@@ -23,13 +23,12 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
-          use-mamba: true
 
       - name: Restore conda environment cache
         id: restore-cache
         uses: actions/cache@v3
         with:
-          path: /home/runner/miniconda/envs/myenv
+          path: /home/runner/miniconda/envs/env
           key: ${{ runner.os }}-conda-${{ hashFiles('**/requirements.txt') }}
           restore-keys: ${{ runner.os }}-conda-
 
@@ -64,11 +63,6 @@ jobs:
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
       
-      - name: conda init
-        env:
-          QUARTO_PUBLISHER: gh-pages
-        run: |
-          conda init
 
       - name: Publish with Quarto + activate environment
         env:

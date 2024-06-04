@@ -38,7 +38,7 @@ jobs:
         id: cache-conda
         uses: actions/cache@v3
         with:
-          path: /home/runner/miniconda/envs/myenv
+          path: /home/runner/miniconda/envs/env
           key: ${{ runner.os }}-conda-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-conda-
