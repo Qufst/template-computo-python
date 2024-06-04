@@ -30,10 +30,9 @@ jobs:
 
       - name: Create conda environment and install dependencies
         run: |
-          conda create --yes --name myenv python=3.10
           conda init
-          conda activate myenv
-          pip install -r requirements.txt
+          conda create --yes --name myenv python=3.10
+          conda install -r requirements.txt
 
       - name: Cache conda environment
         id: cache-conda
