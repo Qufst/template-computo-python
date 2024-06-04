@@ -43,10 +43,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-conda-
 
-      - name: ls env
-        run: |
-          ls * env
-
       - name: Compress conda environment
         run: |
           tar -czvf env.tar.gz env
