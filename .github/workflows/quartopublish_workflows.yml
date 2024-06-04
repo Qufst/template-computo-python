@@ -68,5 +68,4 @@ jobs:
         env:
           QUARTO_PUBLISHER: gh-pages
         run: |
-          conda activate env
           quarto publish template-computo-python.qmd
