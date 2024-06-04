@@ -41,7 +41,7 @@ jobs:
 
       - name: Decompress conda environment
         run: |
-          tar -xzvf myenv.tar.gz -C /home/runner/miniconda/envs
+          tar -xzvf myenv.tar.gz -C ./myenv
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -68,5 +68,5 @@ jobs:
         env:
           QUARTO_PUBLISHER: gh-pages
         run: |
-          mamba activate myenv
+          conda activate myenv
           quarto publish template-computo-python.qmd

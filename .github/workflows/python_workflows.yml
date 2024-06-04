@@ -28,14 +28,10 @@ jobs:
         with:
           auto-update-conda: true
 
-      - name: Install mamba
-        run: conda install -c conda-forge mamba
-
       - name: Create conda environment and install dependencies
         run: |
-          mamba init --all
-          mamba create --yes --name myenv python=3.10
-          mamba activate myenv
+          conda create --yes --name myenv python=3.10
+          conda activate myenv
           pip install -r requirements.txt
 
       - name: Cache conda environment
@@ -49,7 +45,7 @@ jobs:
 
       - name: Compress conda environment
         run: |
-          tar -czvf myenv.tar.gz -C /home/runner/miniconda/envs myenv
+          tar -czvf myenv.tar.gz -C ./myenv
 
       - name: Upload conda environment as artifact
         uses: actions/upload-artifact@v3
