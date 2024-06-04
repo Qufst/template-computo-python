@@ -38,13 +38,9 @@ jobs:
           name: python-venv
           path: venv.tar.gz
 
-      - name: list virtual environment
-        run: |
-          tar -tzvf venv.tar.gz
-
       - name: Decompress virtual environment
         run: |
-          tar -xzvf venv.tar.gz -C ./venv
+          tar -xzvf venv.tar.gz 
 
 
 
