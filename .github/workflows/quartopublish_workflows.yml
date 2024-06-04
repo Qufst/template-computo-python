@@ -36,12 +36,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: python-venv
-          path: venv.zip
+          path: venv.tar.gz
 
 
       - name: Decompress virtual environment
         run: |
-          unzip ./venv.zip/venv.zip
+          tar -xzvf venv.tar.gz -C ./
 
 
       - name: Set up Quarto

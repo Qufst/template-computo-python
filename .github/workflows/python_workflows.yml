@@ -12,8 +12,6 @@ on:
       token:
         required: true
 
-
-
 jobs:
   dependencies:
     runs-on: ubuntu-latest
@@ -49,13 +47,13 @@ jobs:
       
       - name: Compress virtual environment
         run: |
-          zip -r venv.zip ./venv
+          tar -czvf venv.tar.gz ./
 
       - name: Upload virtual environment as artifact
         uses: actions/upload-artifact@v3
         with:
           name: python-venv
-          path: venv.zip
+          path: venv.tar.gz
 
 
 
