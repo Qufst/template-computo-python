@@ -49,10 +49,10 @@ jobs:
 
       - name: Compress conda environment
         run: |
-          tar -czvf myenv.tar.gz -C ./env
+          tar -czvf env.tar.gz env
 
       - name: Upload conda environment as artifact
         uses: actions/upload-artifact@v3
         with:
           name: conda-env
-          path: myenv.tar.gz
+          path: env.tar.gz
