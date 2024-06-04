@@ -46,11 +46,11 @@ jobs:
       - name: ls
         run: |
           ls ./
-          ls ./myenv
-          
+          ls ./usr/share/miniconda/envs/myenv
+
       - name: Compress conda environment
         run: |
-          tar -czvf myenv.tar.gz -C ./myenv
+          tar -czvf myenv.tar.gz -C ./usr/share/miniconda/envs/myenv
 
       - name: Upload conda environment as artifact
         uses: actions/upload-artifact@v3

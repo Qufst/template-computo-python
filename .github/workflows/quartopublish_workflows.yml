@@ -41,7 +41,7 @@ jobs:
 
       - name: Decompress conda environment
         run: |
-          tar -xzvf myenv.tar.gz -C ./myenv
+          tar -xzvf myenv.tar.gz -C ./usr/share/miniconda/envs/myenv
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
