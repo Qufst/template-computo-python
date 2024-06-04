@@ -19,43 +19,42 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v2
         with:
-          python-version: '3.10'
+          auto-update-conda: true
+          use-mamba: true
 
-      - name: Restore pip dependencies cache
+      - name: Restore conda environment cache
         id: restore-cache
         uses: actions/cache@v3
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: ${{ runner.os }}-pip-
+          path: /home/runner/miniconda/envs/myenv
+          key: ${{ runner.os }}-conda-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-conda-
 
-      - name: Download virtual environment artifact
+      - name: Download conda environment artifact
         uses: actions/download-artifact@v3
         with:
-          name: python-venv
-          path: venv.tar.gz
+          name: conda-env
+          path: myenv.tar.gz
 
-      - name: Decompress virtual environment
+      - name: Decompress conda environment
         run: |
-          tar -xzvf venv.tar.gz 
-
-
+          tar -xzvf myenv.tar.gz -C /home/runner/miniconda/envs
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
-  
+
       - name: Register TinyTeX globally for diagram.lua
         run: |
           mkdir -p ~/.local/bin
           ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin
           ~/.TinyTeX/bin/x86_64-linux/tlmgr path add
           ~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts
-  
+
       - name: Install Computo extension for Quarto
         run: |
           quarto add --no-prompt computorg/computo-quarto-extension
@@ -64,14 +63,12 @@ jobs:
         run: |
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
-  
+
       - name: Publish with Quarto + activate environment
         env:
           QUARTO_PUBLISHER: gh-pages
         run: |
-          source ./venv/bin/activate
+          source activate myenv
           python --version
           pip list
           quarto publish template-computo-python.qmd
-
- 
