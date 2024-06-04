@@ -32,7 +32,7 @@ jobs:
         run: |
           conda init
           conda create --yes --name myenv python=3.10
-          conda install -r requirements.txt
+          conda install --file requirements.txt
 
       - name: Cache conda environment
         id: cache-conda
