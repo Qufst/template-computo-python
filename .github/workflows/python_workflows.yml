@@ -31,7 +31,7 @@ jobs:
       - name: Create conda environment and install dependencies
         run: |
           conda init
-          conda create --yes --name myenv python=3.10
+          conda create --yes --prefix ./env --name myenv python=3.10
           conda install --file requirements.txt
 
       - name: Cache conda environment
@@ -45,11 +45,11 @@ jobs:
 
       - name: ls myenv
         run: |
-          ls * myenv
+          ls * env
 
       - name: Compress conda environment
         run: |
-          tar -czvf myenv.tar.gz -C ./usr/share/miniconda/envs
+          tar -czvf myenv.tar.gz -C ./env
 
       - name: Upload conda environment as artifact
         uses: actions/upload-artifact@v3
