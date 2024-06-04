@@ -31,7 +31,7 @@ jobs:
       - name: Create conda environment and install dependencies
         run: |
           conda init
-          conda create --yes --prefix ./env --name myenv python=3.10
+          conda create --yes --prefix ./env python=3.10
           conda install --file requirements.txt
 
       - name: Cache conda environment
@@ -43,7 +43,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-conda-
 
-      - name: ls myenv
+      - name: ls env
         run: |
           ls * env
 
