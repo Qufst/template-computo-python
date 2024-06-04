@@ -37,16 +37,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: conda-env
-          path: env.tar.gz
-
-      - name: ls
-        run: |
-          ls env.tar.gz
-          file env.tar.gz 
+          path: env.zip
 
       - name: Decompress conda environment
         run: |
-          tar xzvf env.tar.gz 
+          unzip ./env.zip/env.zip
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
