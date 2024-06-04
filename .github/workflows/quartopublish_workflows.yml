@@ -42,6 +42,7 @@ jobs:
       - name: ls
         run: |
           ls env.tar.gz
+          file env.tar.gz
 
       - name: Decompress conda environment
         run: |
