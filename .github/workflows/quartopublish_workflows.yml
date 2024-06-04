@@ -41,7 +41,7 @@ jobs:
 
       - name: Decompress virtual environment
         run: |
-          tar -xzvf venv.tar.gz -C ./
+          tar -xzvf venv.tar.gz -C ./venv
 
 
       - name: Set up Quarto

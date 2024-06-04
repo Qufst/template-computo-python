@@ -47,7 +47,7 @@ jobs:
       
       - name: Compress virtual environment
         run: |
-          tar -czvf venv.tar.gz ./
+          tar -czvf venv.tar.gz ./venv
 
       - name: Upload virtual environment as artifact
         uses: actions/upload-artifact@v3
