@@ -40,6 +40,7 @@ jobs:
 
       - name: Decompress virtual environment
         run: |
+          tar -tzvf venv.tar.gz
           tar -xzvf venv.tar.gz -C ./venv
 
 
