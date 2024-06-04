@@ -46,7 +46,7 @@ jobs:
       - name: ls
         run: |
           ls ./
-          ls ./usr/share/miniconda/envs/myenv
+          ls ./usr/share/miniconda/envs
 
       - name: Compress conda environment
         run: |
