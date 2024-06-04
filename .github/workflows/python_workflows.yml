@@ -50,7 +50,7 @@ jobs:
 
       - name: Compress conda environment
         run: |
-          tar -czvf myenv.tar.gz -C ./usr/share/miniconda/envs/myenv
+          tar -czvf myenv.tar.gz -C ./usr/share/miniconda/envs
 
       - name: Upload conda environment as artifact
         uses: actions/upload-artifact@v3
