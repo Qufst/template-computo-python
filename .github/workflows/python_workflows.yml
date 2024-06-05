@@ -43,5 +43,5 @@ jobs:
       - name: Upload mamba environment as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: micromamba-env
+          name: myenv
           path: ./env.zip
