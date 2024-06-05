@@ -33,7 +33,7 @@ jobs:
       - name: Download micromamba environment artifact
         uses: actions/download-artifact@v3
         with:
-          name: micromamba-env
+          name: myenv
           path: ./
 
       - name: Decompress micromamba environment
