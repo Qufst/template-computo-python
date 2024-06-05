@@ -39,9 +39,10 @@ jobs:
         run: |
           cd /home/runner/micromamba/envs/
           zip -r env.zip ./myenv
+          pdw
 
       - name: Upload mamba environment as artifact
         uses: actions/upload-artifact@v3
         with:
           name: myenv
-          path: ./env.zip
+          path: /home/runner/micromamba/envs/env.zip
