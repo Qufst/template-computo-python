@@ -36,13 +36,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: conda-env
-          path: env.zip
+          path: ./
 
       - name: Decompress conda environment
         run: |
-          cd /home/runner/work/template-computo-python/template-computo-python/env.zip
+          cd /home/runner/work/template-computo-python/template-computo-python
           ls *
-          unzip /home/runner/work/template-computo-python/template-computo-python/env.zip/env.zip -d /home/runner/work/template-computo-python/zip/
+          unzip /home/runner/work/template-computo-python/template-computo-python/env.zip -d /home/runner/work/template-computo-python/zip/
 
       - name: init conda
         run: |
