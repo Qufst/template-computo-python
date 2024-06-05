@@ -28,7 +28,7 @@ jobs:
 
       - name: List micromamba environments
         run: |
-          micromamba env list
+          mamba env list
 
       - name: Cache micromamba environment
         id: cache-micromamba
