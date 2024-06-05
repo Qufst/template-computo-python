@@ -26,10 +26,6 @@ jobs:
       - name: Set up micromamba
         uses: mamba-org/provision-with-micromamba@v1
 
-      - name: activate micromamba environments
-        run: |
-          micromamba activate myenv
-
       - name: Cache micromamba environment
         id: cache-micromamba
         uses: actions/cache@v3
@@ -41,8 +37,8 @@ jobs:
 
       - name: Compress mamba environment
         run: |
-          cd /home/runner/work/template-computo-python/template-computo-python
-          zip -r env.zip ./env
+          cd /home/runner/micromamba/envs/
+          zip -r env.zip ./myenv
 
       - name: Upload mamba environment as artifact
         uses: actions/upload-artifact@v3
