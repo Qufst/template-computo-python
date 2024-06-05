@@ -70,6 +70,7 @@ jobs:
       - name: activate env
         run: |
           source ~/.bashrc
+          conda env list
           conda activate env
 
 
