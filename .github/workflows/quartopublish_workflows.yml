@@ -63,11 +63,19 @@ jobs:
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
       
+      - name: init conda
+        run: |
+          conda init bash
+
+      - name: activate env
+        run: |
+          source ~/.bashrc
+          conda activate env
+
 
       - name: Publish with Quarto + activate environment
         env:
+          with: env
           QUARTO_PUBLISHER: gh-pages
         run: |
-          conda init
-          conda activate myenv
           quarto publish template-computo-python.qmd
