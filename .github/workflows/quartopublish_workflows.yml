@@ -19,17 +19,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up micromamba
-        uses: mamba-org/provision-with-micromamba@v1
-
-      - name: Restore micromamba environment cache
-        id: restore-cache
-        uses: actions/cache@v3
-        with:
-          path: ./env
-          key: ${{ runner.os }}-micromamba-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: ${{ runner.os }}-micromamba-
-
       - name: Download micromamba environment artifact
         uses: actions/download-artifact@v3
         with:
