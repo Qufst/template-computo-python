@@ -29,6 +29,8 @@ jobs:
       - name: Create micromamba environment and install dependencies
         run: |
           micromamba create -y -p ./env python=3.10
+          echo 'export PATH="$HOME/micromamba/bin:$PATH"' >> $HOME/.bashrc
+          source $HOME/.bashrc
           source ~/micromamba/bin/activate ./env
 
       - name: List micromamba environments
