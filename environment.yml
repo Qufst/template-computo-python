@@ -1,4 +1,7 @@
-jupyter
-matplotlib
-numpy
-nbformat
+name: myenv
+dependencies:
+  - python=3.10
+  - jupyter
+  - matplotlib
+  - numpy
+  - nbformat
