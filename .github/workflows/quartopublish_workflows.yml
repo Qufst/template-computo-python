@@ -42,6 +42,14 @@ jobs:
         run: |
           unzip ./env.zip/env.zip
 
+      - name: init conda
+        run: |
+          conda init bash
+
+      - name: liste conda env
+        run: |
+          conda env list
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -63,20 +71,15 @@ jobs:
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
       
-      - name: init conda
-        run: |
-          conda init bash
 
       - name: activate env
         run: |
           source ~/.bashrc
-          conda env list
-          conda activate env
+          conda activate base
 
 
       - name: Publish with Quarto + activate environment
         env:
-          with: env
           QUARTO_PUBLISHER: gh-pages
         run: |
           quarto publish template-computo-python.qmd
