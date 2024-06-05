@@ -69,8 +69,8 @@ jobs:
 
       - name: Activate micromamba environment
         run: |
-          ls /home/runner/work/template-computo-python/template-computo-python/env/
-          micromamba activate /home/runner/work/template-computo-python/template-computo-python/env
+          ls /home/runner/micromamba/envs/
+          micromamba activate /home/runner/micromamba/envs//env
 
       - name: Publish with Quarto + activate environment
         env:
