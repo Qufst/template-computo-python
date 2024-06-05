@@ -24,9 +24,6 @@ jobs:
         with:
           auto-update-conda: true
 
-      - name: conda init
-        run: conda init
-
       - name: Restore conda environment cache
         id: restore-cache
         uses: actions/cache@v3
@@ -71,5 +68,6 @@ jobs:
         env:
           QUARTO_PUBLISHER: gh-pages
         run: |
+          conda init
           conda activate myenv
           quarto publish template-computo-python.qmd
