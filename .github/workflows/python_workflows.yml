@@ -23,29 +23,27 @@ jobs:
         uses: actions/checkout@v3
 
 
-      - name: Set up Miniconda
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-update-conda: true
+      - name: Set up micromamba
+        uses: mamba-org/provision-with-micromamba@v1
 
-      - name: Create conda environment and install dependencies
+      - name: Create micromamba environment and install dependencies
         run: |
-          conda init
-          conda create --yes --prefix ./env python=3.10
-          conda install --file requirements.txt
+          micromamba create -y -p ./env python=3.10
+          micromamba activate ./env
+          micromamba install -y --file requirements.txt
 
-      - name: liste conda env
+      - name: List micromamba environments
         run: |
-          conda env list
+          micromamba env list
 
-      - name: Cache conda environment
-        id: cache-conda
+      - name: Cache micromamba environment
+        id: cache-micromamba
         uses: actions/cache@v3
         with:
-          path: /home/runner/miniconda/envs/env
-          key: ${{ runner.os }}-conda-${{ hashFiles('**/requirements.txt') }}
+          path: ./env
+          key: ${{ runner.os }}-micromamba-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
-            ${{ runner.os }}-conda-
+            ${{ runner.os }}-micromamba-
 
       - name: Compress conda environment
         run: |
@@ -55,5 +53,5 @@ jobs:
       - name: Upload conda environment as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: conda-env
+          name: micromamba-env
           path: ./env.zip

@@ -19,37 +19,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Miniconda
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-update-conda: true
+      - name: Set up micromamba
+        uses: mamba-org/provision-with-micromamba@v1
 
-      - name: Restore conda environment cache
+      - name: Restore micromamba environment cache
         id: restore-cache
         uses: actions/cache@v3
         with:
-          path: /home/runner/miniconda/envs/env
-          key: ${{ runner.os }}-conda-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: ${{ runner.os }}-conda-
+          path: ./env
+          key: ${{ runner.os }}-micromamba-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-micromamba-
 
-      - name: Download conda environment artifact
+      - name: Download micromamba environment artifact
         uses: actions/download-artifact@v3
         with:
-          name: conda-env
+          name: micromamba-env
           path: ./
 
-      - name: Decompress conda environment
+      - name: Decompress micromamba environment
         run: |
           ls *zip
-          unzip /home/runner/work/template-computo-python/template-computo-python/env.zip -d /home/runner/work/template-computo-python/template-computo-python/condenv
+          unzip /home/runner/work/template-computo-python/template-computo-python/env.zip -d /home/runner/work/template-computo-python/template-computo-python/
 
-      - name: init conda
-        run: |
-          conda init bash
 
-      - name: liste conda env
+      - name: List micromamba environments
         run: |
-          conda env list
+          micromamba env list
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -71,14 +66,11 @@ jobs:
         run: |
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
-      
 
-      - name: activate env
+      - name: Activate micromamba environment
         run: |
-          ls /home/runner/work/template-computo-python/template-computo-python/condenv/
-          source ~/.bashrc
-          conda activate condenv/env
-
+          ls /home/runner/work/template-computo-python/template-computo-python/env/
+          micromamba activate /home/runner/work/template-computo-python/template-computo-python/env
 
       - name: Publish with Quarto + activate environment
         env:
