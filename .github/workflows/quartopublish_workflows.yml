@@ -40,7 +40,7 @@ jobs:
 
       - name: Decompress conda environment
         run: |
-          unzip ./env.zip/env.zip
+          unzip env.zip -d /home/runner/miniconda/envs/ 
 
       - name: init conda
         run: |
