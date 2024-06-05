@@ -40,7 +40,8 @@ jobs:
 
       - name: Decompress conda environment
         run: |
-          unzip env.zip -d /home/runner/miniconda/envs/ 
+          cd /home/runner/work/template-computo-python/template-computo-python/
+          unzip env.zip -d env.zip
 
       - name: init conda
         run: |
