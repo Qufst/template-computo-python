@@ -40,9 +40,7 @@ jobs:
 
       - name: Decompress conda environment
         run: |
-          cd /home/runner/work/template-computo-python/template-computo-python/
-          ls *.zip
-          unzip ./env.zip -d ~/
+          unzip /home/runner/work/template-computo-python/template-computo-python/env.zip -d /home/runner/work/template-computo-python/zip/
 
       - name: init conda
         run: |
@@ -77,7 +75,7 @@ jobs:
       - name: activate env
         run: |
           source ~/.bashrc
-          conda activate base
+          conda activate env
 
 
       - name: Publish with Quarto + activate environment
