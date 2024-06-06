@@ -29,8 +29,7 @@ jobs:
         run: |
           ls /home/runner/
           ls /home/runner/work
-          ls /home/runner/work/template-computo-python/template-computo-python
-          ls */micromamba
+          ls -l /home/runner/work/template-computo-python/template-computo-python
 
       - name: List micromamba environments
         run: |
