@@ -28,14 +28,11 @@ jobs:
       - name: detar
         run: |
           tar xzvf /home/runner/work/template-computo-python/template-computo-python/micromamba.tar.gz -C /home/runner/
-          
+
       - name: lister ce qui existe
         run: |
           ls -l /home/runner/work/template-computo-python/template-computo-python
 
-      - name: List micromamba environments
-        run: |
-          micromamba env list
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -61,7 +58,7 @@ jobs:
       - name: Activate micromamba environment
         run: |
           ls /home/runner/micromamba/envs/
-          micromamba activate /home/runner/micromamba/envs/env
+          micromamba activate /home/runner/micromamba/envs/myenv
 
       - name: Publish with Quarto + activate environment
         env:
