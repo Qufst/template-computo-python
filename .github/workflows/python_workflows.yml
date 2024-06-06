@@ -30,7 +30,7 @@ jobs:
         id: cache-micromamba
         uses: actions/cache@v3
         with:
-          path: ./env
+          path: /home/runner/micromamba/envs/myenv
           key: ${{ runner.os }}-micromamba-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-micromamba-
