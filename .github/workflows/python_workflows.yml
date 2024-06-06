@@ -22,13 +22,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: ls avant setup mamba
+        run: | 
+          ls -l /home/runner/
 
       - name: Set up micromamba
         uses: mamba-org/provision-with-micromamba@v1
 
-#      - name: lister les bases de micromamba
-#        uses: |
-#          ls 
+      - name: lister les bases de micromamba
+        run: |
+          ls -l /home/runner/
+          git status
 
       - name: Compress mamba environment
         run: |
