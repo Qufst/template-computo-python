@@ -27,12 +27,12 @@ jobs:
 
       - name: detar
         run: |
-          tar xzvf /home/runner/work/template-computo-python/template-computo-python/micromamba.tar.gz -C /home/runner/
+          tar xzvf /home/runner/work/template-computo-python/template-computo-python/micromamba.tar.gz -C /home/runner/ --quiet
 
-      - name: lister ce qui existe
+
+      - name: Sourcer le script micromamba.sh
         run: |
-          ls -l /home/runner/work/template-computo-python/template-computo-python
-
+          source /home/runner/micromamba/etc/profile.d/micromamba.sh
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -57,7 +57,7 @@ jobs:
 
       - name: Add micromamba to PATH
         run: |
-          echo "/home/runner/micromamba/bin" >> $GITHUB_PATH
+          echo "/home/runner/micromamba/envs/myenv/bin" >> $GITHUB_PATH
 
       - name: Activate micromamba environment
         run: |

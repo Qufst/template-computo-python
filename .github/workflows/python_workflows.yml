@@ -32,7 +32,6 @@ jobs:
       - name: lister les bases de micromamba
         run: |
           ls -l /home/runner/
-          git status
 
       - name: Compress mamba environment
         run: |
