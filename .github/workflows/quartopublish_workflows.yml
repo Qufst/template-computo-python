@@ -19,22 +19,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Download micromamba environment artifact
-        uses: actions/download-artifact@v3
+      - name: Restore dependencies
+        id: micromamba
+        uses: actions/cache/restore@v4
         with:
-          name: myenv
-          path: ./
-
-      - name: detar
-        run: |
-          tar xzvf /home/runner/work/template-computo-python/template-computo-python/micromamba.tar.gz -C /home/runner/ 
-          ls /home/runner/
-          
-
-      - name: Sourcer le script micromamba.sh
-        run: |
-          chmod /home/runner/micromamba/etc/profile.d/micromamba.sh
-          source /home/runner/micromamba/etc/profile.d/micromamba.sh
+          path: |
+            /home/runners/
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -57,14 +48,9 @@ jobs:
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
 
-      - name: Add micromamba to PATH
-        run: |
-          echo "/home/runner/micromamba/envs/myenv/bin" >> $GITHUB_PATH
-
       - name: Activate micromamba environment
         run: |
-          ls /home/runner/micromamba/envs/
-          micromamba activate /home/runner/micromamba/envs/myenv
+          micromamba activate myenv
 
       - name: Publish with Quarto + activate environment
         env:

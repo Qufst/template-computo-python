@@ -22,27 +22,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: ls avant setup mamba
-        run: | 
-          ls -l /home/runner/
-
       - name: Set up micromamba
         uses: mamba-org/provision-with-micromamba@v1
 
-      - name: lister les bases de micromamba
-        run: |
-          ls -l /home/runner/
-          ls -l /home/runner/micromamba
+      - name: put in cache
+        id: micromamba
+        uses: actions/cache@v4
+        with: 
+          path: /home/runners/micromamba
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+          
 
-      - name: Compress mamba environment
-        run: |
-          cd /home/runner/
-          tar czvf micromamba.tar.gz ./micromamba
-# cd /home/runner/micromamba/envs/
-#tar czvf env.tar.gz ./myenv
 
-      - name: Upload micromamba environment as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: myenv
-          path: /home/runner/micromamba.tar.gz
+
+
+
