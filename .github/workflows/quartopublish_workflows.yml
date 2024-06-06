@@ -25,12 +25,6 @@ jobs:
           name: myenv
           path: ./
 
-      - name: Decompress micromamba environment
-        run: |
-          ls *zip
-          unzip /home/runner/work/template-computo-python/template-computo-python/env.zip -d /home/runner/work/template-computo-python/template-computo-python/
-
-
       - name: List micromamba environments
         run: |
           micromamba env list

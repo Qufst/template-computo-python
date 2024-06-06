@@ -26,22 +26,13 @@ jobs:
       - name: Set up micromamba
         uses: mamba-org/provision-with-micromamba@v1
 
-      - name: Cache micromamba environment
-        id: cache-micromamba
-        uses: actions/cache@v3
-        with:
-          path: /home/runner/micromamba/envs/myenv
-          key: ${{ runner.os }}-micromamba-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-micromamba-
-
       - name: Compress mamba environment
         run: |
           cd /home/runner/micromamba/envs/
-          zip -r env.zip ./myenv
+          tar czvf env.tar.gz ./myenv
 
       - name: Upload mamba environment as artifact
         uses: actions/upload-artifact@v3
         with:
           name: myenv
-          path: /home/runner/micromamba/envs/env.zip
+          path: /home/runner/micromamba/envs/env.tar.gz
