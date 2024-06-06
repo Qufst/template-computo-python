@@ -32,6 +32,7 @@ jobs:
       - name: lister les bases de micromamba
         run: |
           ls -l /home/runner/
+          ls -l /home/runner/micromamba
 
       - name: Compress mamba environment
         run: |

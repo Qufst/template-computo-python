@@ -28,10 +28,12 @@ jobs:
       - name: detar
         run: |
           tar xzvf /home/runner/work/template-computo-python/template-computo-python/micromamba.tar.gz -C /home/runner/ 
-
+          ls /home/runner/
+          
 
       - name: Sourcer le script micromamba.sh
         run: |
+          chmod /home/runner/micromamba/etc/profile.d/micromamba.sh
           source /home/runner/micromamba/etc/profile.d/micromamba.sh
 
       - name: Set up Quarto
