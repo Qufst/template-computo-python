@@ -55,6 +55,10 @@ jobs:
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
 
+      - name: Add micromamba to PATH
+        run: |
+          echo "/home/runner/micromamba/bin" >> $GITHUB_PATH
+
       - name: Activate micromamba environment
         run: |
           ls /home/runner/micromamba/envs/

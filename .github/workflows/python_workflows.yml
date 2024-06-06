@@ -26,6 +26,10 @@ jobs:
       - name: Set up micromamba
         uses: mamba-org/provision-with-micromamba@v1
 
+#      - name: lister les bases de micromamba
+#        uses: |
+#          ls 
+
       - name: Compress mamba environment
         run: |
           cd /home/runner/
