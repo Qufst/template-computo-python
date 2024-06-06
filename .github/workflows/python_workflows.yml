@@ -31,8 +31,8 @@ jobs:
           cd /home/runner/micromamba/envs/
           tar czvf env.tar.gz ./myenv
 
-      - name: Upload mamba environment as artifact
+      - name: Upload micromamba environment as artifact
         uses: actions/upload-artifact@v3
         with:
           name: myenv
-          path: /home/runner/micromamba/envs/env.tar.gz
+          path: /home/runner/micromamba

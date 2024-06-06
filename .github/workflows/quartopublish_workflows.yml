@@ -25,6 +25,10 @@ jobs:
           name: myenv
           path: ./
 
+      - name: lister ce qui existe
+        run: |
+          ls /home/runner/
+
       - name: List micromamba environments
         run: |
           micromamba env list
