@@ -25,10 +25,12 @@ jobs:
           name: myenv
           path: ./
 
+      - name: detar
+        run: |
+          tar xzvf /home/runner/work/template-computo-python/template-computo-python/micromamba.tar.gz -C /home/runner/
+          
       - name: lister ce qui existe
         run: |
-          ls /home/runner/
-          ls /home/runner/work
           ls -l /home/runner/work/template-computo-python/template-computo-python
 
       - name: List micromamba environments
