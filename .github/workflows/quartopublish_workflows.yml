@@ -27,7 +27,7 @@ jobs:
 
       - name: detar
         run: |
-          tar xzvf /home/runner/work/template-computo-python/template-computo-python/micromamba.tar.gz -C /home/runner/ --quiet
+          tar xzvf /home/runner/work/template-computo-python/template-computo-python/micromamba.tar.gz -C /home/runner/ 
 
 
       - name: Sourcer le script micromamba.sh
