@@ -28,11 +28,13 @@ jobs:
 
       - name: Compress mamba environment
         run: |
-          cd /home/runner/micromamba/envs/
-          tar czvf env.tar.gz ./myenv
+          cd /home/runner/
+          tar czvf micromamba.tar.gz ./micromamba
+# cd /home/runner/micromamba/envs/
+#tar czvf env.tar.gz ./myenv
 
       - name: Upload micromamba environment as artifact
         uses: actions/upload-artifact@v3
         with:
           name: myenv
-          path: /home/runner/micromamba
+          path: /home/runner/micromamba.tar.gz
