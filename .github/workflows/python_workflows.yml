@@ -29,9 +29,9 @@ jobs:
         id: micromamba
         uses: actions/cache@v4
         with: 
-          path: /home/runners/micromamba
+          path: /home/runner/micromamba
           key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
-          
+
 
 
 
