@@ -52,7 +52,7 @@ jobs:
 
       - name: Add Micromamba to PATH
         run: |
-          echo "~/micromamba/bin" >> $GITHUB_PATH        run: echo "::add-path::~/micromamba/bin"
+          echo "~/micromamba/bin" >> $GITHUB_PATH    
 
       - name: Activate micromamba environment
         run: |
