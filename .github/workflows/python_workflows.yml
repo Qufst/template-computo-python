@@ -29,6 +29,7 @@ jobs:
 
       - name: activate
         run: |
+          micromamba init
           micromamba activate myenv
 
       - name: Cache Micromamba installation and environments
