@@ -27,9 +27,7 @@ jobs:
 
       - name: recherche de micromamba
         run: |
-          ls *
-          ls /home/runner/
-          ls /home/runner/micromamba
+          ls ~/
 
       - name: Cache Micromamba environment
         id: cache-micromamba-env
@@ -37,11 +35,10 @@ jobs:
         env: 
           cache-name: micromamba
         with:
-          path: ~/home/runner
-          key: ${{ runner.os }}-micromamba-${{ env.cache-name }}-${{ hashFiles('**/environment.yml') }}
+          path: ~/micromamba
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/environment.yml') }}
           restore-keys: |
-            ${{ runner.os }}-micromamba-${{ env.cache-name }}-
-            ${{ runner.os }}-micromamba
+            ${{ runner.os }}-${{ env.cache-name }}-
             ${{ runner.os }}-
 
       - name: put in cache
@@ -50,8 +47,8 @@ jobs:
         env:
           cache-name: micromamba2
         with: 
-          path: ~/home/runner/micromamba
-          key: ${{ runner.os }}-env-${{ hashFiles('**/environment.yml') }}
+          path: ~/micromamba/env
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/environment.yml') }}
           restore-keys: |
             ${{ runner.os }}-micromamba
 
