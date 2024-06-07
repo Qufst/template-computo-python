@@ -46,14 +46,8 @@ jobs:
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
 
-      - name: ls
-        run: | 
-          ls *
-
       - name: Activate micromamba environment
         run: |
-          micromamba shell init --shell bash --prefix ~/micromamba
-          eval "$(micromamba shell hook --shell bash)"
           micromamba activate myenv
 
       - name: Publish with Quarto + activate environment
