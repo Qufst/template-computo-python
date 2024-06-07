@@ -17,7 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    if: always()
 
     steps:
       - name: Checkout repository
@@ -44,17 +43,9 @@ jobs:
         with:
           path: ~/micromamba
           key: ${{ runner.os }}-micromamba-${{ hashFiles('**/environment.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-micromamba-
-            ${{ runner.os }}-
 
-      - name: Disable Post job cleanup*
-        run: |
-          echo "CLEANUP_WORKING_DIRECTORY=false" >> $GITHUB_ENV
 
-      - name: idem
-        run: |
-          echo "exit 0" >> $GITHUB_PATH
+
 
 
 
