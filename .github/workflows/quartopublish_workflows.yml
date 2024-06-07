@@ -19,6 +19,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: ls
+        run: |
+          ls *
+
       - name: Restore Micromamba cache
         id: cache-micromamba
         uses: actions/cache@v3
