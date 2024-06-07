@@ -38,17 +38,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-micromamba-
             ${{ runner.os }}-
-
-      - name: put in cache
-        id: micromamba
-        uses: actions/cache@v3
-        env:
-          cache-name: micromamba2
-        with: 
-          path: ~/micromamba/envs
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/environment.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-micromamba
+              
 
 
 
