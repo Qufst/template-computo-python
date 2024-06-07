@@ -22,27 +22,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up micromamba
-        uses: mamba-org/setup-micromamba@v1
+      - name: Set conda environment
+        uses: mamba-org/provision-with-micromamba@main
         with:
-          environment-file: environment.yml
+          environment-file: environment.yaml
+          environment-name: myenv
+          cache-env: true
 
-      - name: ls
-        run: |
-          ls *
 
-      - name: activate
-        run: |
-          micromamba shell init --shell bash --prefix ~/micromamba
-          eval "$(micromamba shell hook --shell bash)"
-          micromamba activate myenv
-
-      - name: Cache Micromamba installation and environments
-        id: cache-micromamba
-        uses: actions/cache@v3
-        with:
-          path: ~/micromamba
-          key: ${{ runner.os }}-micromamba-${{ hashFiles('**/environment.yml') }}
 
 
 
