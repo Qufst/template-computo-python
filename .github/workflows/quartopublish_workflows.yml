@@ -19,17 +19,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Restore Micromamba cache
-        id: cache-micromamba
-        uses: actions/cache@v3
+      - name: restore micromamba
+        uses: mamba-org/setup-micromamba@v1
         with:
-          path: ~/micromamba
-          key: ${{ runner.os }}-micromamba-${{ hashFiles('**/environment.yml') }}
-
-      - name: List files in cache
-        run: |
-          echo "Listing files in ~/micromamba:"
-          ls -R ~/micromamba
+          environment-file: environment.yml
+          cache-downloads: true
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
