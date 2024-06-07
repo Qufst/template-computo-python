@@ -26,6 +26,11 @@ jobs:
           path: ~/micromamba
           key: ${{ runner.os }}-micromamba-${{ hashFiles('**/environment.yml') }}
 
+      - name: List files in cache
+        run: |
+          echo "Listing files in ~/micromamba:"
+          ls -R ~/micromamba
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
