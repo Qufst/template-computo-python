@@ -25,9 +25,7 @@ jobs:
         with:
           path: ~/micromamba
           key: ${{ runner.os }}-micromamba-${{ hashFiles('**/environment.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-micromamba-
-            ${{ runner.os }}-
+
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
