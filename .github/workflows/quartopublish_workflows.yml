@@ -23,7 +23,7 @@ jobs:
         id: cache-micromamba
         uses: actions/cache@v3
         with:
-          path: ~/micromamba
+          path: ~/
           key: ${{ runner.os }}-micromamba-${{ hashFiles('**/environment.yml') }}
           restore-keys: |
             ${{ runner.os }}-micromamba-
@@ -50,6 +50,11 @@ jobs:
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
 
+      - name: ls
+        run: | 
+          ls *
+
+      
       - name: Add Micromamba to PATH
         run: |
           echo "$HOME/micromamba/envs/myenv/bin:$PATH" >> $GITHUB_PATH   
@@ -58,11 +63,6 @@ jobs:
         run: |
           echo "PATH: $PATH"
 
-      - name: Source Micromamba initialization script
-        run: |
-          source ~/micromamba/etc/profile.d/micromamba.sh
-          exec bash
-          
       - name: Activate micromamba environment
         run: |
           micromamba init
