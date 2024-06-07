@@ -51,8 +51,9 @@ jobs:
           git config --global user.name "quarto-github-actions"
 
       - name: Add Micromamba to PATH
-        run: echo "::add-path::~/micromamba/bin"
-        
+        run: |
+          echo "~/micromamba/bin" >> $GITHUB_PATH        run: echo "::add-path::~/micromamba/bin"
+
       - name: Activate micromamba environment
         run: |
           micromamba activate myenv
