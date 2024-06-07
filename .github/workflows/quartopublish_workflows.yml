@@ -54,21 +54,10 @@ jobs:
         run: | 
           ls *
 
-      - name: ls mic
-        run: |
-          ls micromamba
-      
-      - name: Add Micromamba to PATH
-        run: |
-          echo "$HOME/micromamba/envs/myenv/bin:$PATH" >> $GITHUB_PATH   
-
-      - name: Display PATH
-        run: |
-          echo "PATH: $PATH"
-
       - name: Activate micromamba environment
         run: |
           micromamba shell init --shell bash --prefix ~/micromamba
+          eval "$(micromamba shell hook --shell bash)"
           micromamba activate myenv
 
       - name: Publish with Quarto + activate environment
