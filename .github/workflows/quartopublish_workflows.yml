@@ -48,6 +48,7 @@ jobs:
 
       - name: Activate micromamba environment
         run: |
+          eval "$(micromamba shell hook --shell bash)"
           micromamba activate myenv
 
       - name: Publish with Quarto + activate environment
