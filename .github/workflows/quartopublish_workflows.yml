@@ -23,7 +23,7 @@ jobs:
         id: cache-micromamba
         uses: actions/cache@v3
         with:
-          path: ~/
+          path: ~/micromamba
           key: ${{ runner.os }}-micromamba-${{ hashFiles('**/environment.yml') }}
           restore-keys: |
             ${{ runner.os }}-micromamba-
@@ -54,6 +54,9 @@ jobs:
         run: | 
           ls *
 
+      - name: ls mic
+        run: |
+          ls micromamba
       
       - name: Add Micromamba to PATH
         run: |
