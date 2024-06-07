@@ -25,7 +25,7 @@ jobs:
       - name: Set conda environment
         uses: mamba-org/provision-with-micromamba@main
         with:
-          environment-file: environment.yaml
+          environment-file: environment.yml
           environment-name: myenv
           cache-env: true
 
