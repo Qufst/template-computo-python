@@ -30,7 +30,7 @@ jobs:
       - name: ls
         run: |
           ls *
-          
+
       - name: activate
         run: |
           micromamba shell init --shell bash --prefix ~/micromamba
@@ -41,7 +41,7 @@ jobs:
         id: cache-micromamba
         uses: actions/cache@v3
         with:
-          path: ~/micromamba
+          path: ~/micromamba-bin
           key: ${{ runner.os }}-micromamba-${{ hashFiles('**/environment.yml') }}
           restore-keys: |
             ${{ runner.os }}-micromamba-
