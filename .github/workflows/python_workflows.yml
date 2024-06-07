@@ -41,11 +41,15 @@ jobs:
         id: cache-micromamba
         uses: actions/cache@v3
         with:
-          path: ~/micromamba-bin
+          path: ~/micromamba
           key: ${{ runner.os }}-micromamba-${{ hashFiles('**/environment.yml') }}
           restore-keys: |
             ${{ runner.os }}-micromamba-
             ${{ runner.os }}-
+
+      - name: Disable Post job cleanup*
+        run: |
+          echo "::set-env name=CLEANUP_WORKING_DIRECTORY::false" 
 
 
 
