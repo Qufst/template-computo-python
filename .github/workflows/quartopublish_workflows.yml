@@ -58,6 +58,9 @@ jobs:
         run: |
           echo "PATH: $PATH"
 
+      - name: Source Micromamba initialization script
+        run: |
+          source ~/micromamba/etc/profile.d/micromamba.sh
       - name: Activate micromamba environment
         run: |
           micromamba init
