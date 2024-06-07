@@ -49,7 +49,12 @@ jobs:
 
       - name: Disable Post job cleanup*
         run: |
-          echo "::set-env name=CLEANUP_WORKING_DIRECTORY::false" 
+          echo "CLEANUP_WORKING_DIRECTORY=false" >> $GITHUB_ENV
+
+      - name: idem
+        run: |
+          echo "exit 0" >> $GITHUB_PATH
+
 
 
 
