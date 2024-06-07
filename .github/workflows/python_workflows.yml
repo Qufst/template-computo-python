@@ -29,16 +29,14 @@ jobs:
         run: |
           ls ~/
 
-      - name: Cache Micromamba environment
-        id: cache-micromamba-env
+      - name: Cache Micromamba installation and environments
+        id: cache-micromamba
         uses: actions/cache@v3
-        env: 
-          cache-name: micromamba
         with:
           path: ~/micromamba
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/environment.yml') }}
+          key: ${{ runner.os }}-micromamba-${{ hashFiles('**/environment.yml') }}
           restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-
+            ${{ runner.os }}-micromamba-
             ${{ runner.os }}-
 
       - name: put in cache
@@ -47,7 +45,7 @@ jobs:
         env:
           cache-name: micromamba2
         with: 
-          path: ~/micromamba/env
+          path: ~/micromamba/envs
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/environment.yml') }}
           restore-keys: |
             ${{ runner.os }}-micromamba
