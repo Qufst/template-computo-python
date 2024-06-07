@@ -46,13 +46,10 @@ jobs:
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
 
-      - name: Activate micromamba environment
-        run: |
-          eval "$(micromamba shell hook --shell bash)"
-          micromamba activate myenv
-
       - name: Publish with Quarto + activate environment
         env:
           QUARTO_PUBLISHER: gh-pages
         run: |
+          eval "$(micromamba shell hook --shell bash)"
+          micromamba activate myenv
           quarto publish template-computo-python.qmd
