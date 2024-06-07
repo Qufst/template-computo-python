@@ -25,9 +25,9 @@ jobs:
       - name: Set up micromamba
         uses: mamba-org/provision-with-micromamba@v1
 
-      - name: recherche de micromamba
+      - name: activate
         run: |
-          ls ~/
+          micromamba activate myenv
 
       - name: Cache Micromamba installation and environments
         id: cache-micromamba
@@ -38,7 +38,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-micromamba-
             ${{ runner.os }}-
-              
+
 
 
 
