@@ -22,12 +22,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set conda environment
-        uses: mamba-org/provision-with-micromamba@main
+      - name: Set up micromamba
+        uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: environment.yml
-          environment-name: myenv
-          cache-env: true
+          cache-downloads: true
 
 
 
