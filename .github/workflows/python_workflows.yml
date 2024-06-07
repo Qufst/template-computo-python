@@ -27,6 +27,10 @@ jobs:
         with:
           environment-file: environment.yml
 
+      - name: ls
+        run: |
+          ls *
+          
       - name: activate
         run: |
           micromamba shell init --shell bash --prefix ~/micromamba
