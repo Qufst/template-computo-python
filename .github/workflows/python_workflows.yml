@@ -29,7 +29,7 @@ jobs:
 
       - name: activate
         run: |
-          micromamba init
+          micromamba shell init --shell bash --prefix ~/micromamba
           micromamba activate myenv
 
       - name: Cache Micromamba installation and environments
