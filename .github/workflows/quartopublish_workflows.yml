@@ -19,11 +19,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: restore micromamba
-        uses: mamba-org/setup-micromamba@v1
+      - name: Restore artifact
+        uses: actions/download-artifact@v3
+        with: 
+          name: artifact-env
+          path: ${{ runner.temp }}/
+
+      - name: Restore name of sha from artifact
+        id: calculate-sha256
+        run: sha256=$(head -n 1 ${{ runner.temp }}/activate_env.sh)
+
+
+      - name: Restore Cache environment
+        uses: actions/cache@v2
         with:
-          environment-file: environment.yml
-          cache-downloads: true
+          path:
+          key: ${{ runner.os }}-mamba-${{ steps.calculate-sha256.sha256 }}
+
+      - name: Activate the environment from the cache with the script in the artifact
+        run: tail -n +2 ${{ runner.temp }}/activate_env.sh | source /dev/stdin # pour lire à partir de la deuxième ligne
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -50,6 +64,4 @@ jobs:
         env:
           QUARTO_PUBLISHER: gh-pages
         run: |
-          eval "$(micromamba shell hook --shell bash)"
-          micromamba activate myenv
           quarto publish template-computo-python.qmd

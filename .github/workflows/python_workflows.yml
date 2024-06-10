@@ -17,16 +17,53 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Determine environment file
+        id: determine-env-file
+        run: echo "::set-output name=env-file::$(if [[ -f requirement.txt ]]; then echo requirement.txt; else echo environment.yml; fi)"
+
       - name: Set up micromamba
         uses: mamba-org/setup-micromamba@v1
         with:
-          environment-file: environment.yml
-          cache-downloads: true
+          environment-file: ${{ steps.determine-env-file.outputs.env-file }}
+
+      - name: create a script
+        run: touch activate_env.sh
+
+      - name: Calculate SHA-256 hash and put it in the script
+        id: calculate-sha256
+        run: |
+          hash=$(shasum -a 256 "${{ steps.determine-env-file.outputs.env-file }}" | awk '{ print $1 }')
+          echo "sha256=$hash" >> $GITHUB_OUTPUT
+
+          # put the key in a file
+          echo "sha256=$hash" > activate_env.sh
+          # put the script to activate the environment in the file
+          echo "micromamba activate --file ${{ steps.determine-env-file.outputs.env-file }}"
+
+
+      - name: Cache environment
+        uses: actions/cache@v2
+        with:
+          path: ${{ runner.temp }}/micromamba
+          key: ${{ runner.os }}-mamba-${{ steps.calculate-sha256.sha256 }}
+        
+
+      - name: Deploy an artifact
+        uses: actions/upload-artifact@v3
+        with: 
+          name: artifact-env
+          path: ${{ runner.temp }}/activate_env.sh
+
+
+
+
+
+
+
 
 
 
