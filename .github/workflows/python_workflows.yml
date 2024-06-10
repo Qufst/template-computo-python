@@ -57,7 +57,7 @@ jobs:
       - name: Deploy an artifact
         uses: actions/upload-artifact@v3
         with: 
-          name: artifact-env
+          name: activate_env.sh
           path: /activate_env.sh
 
 
