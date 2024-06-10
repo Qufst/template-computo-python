@@ -28,6 +28,9 @@ jobs:
       - name: Restore name of sha from artifact
         id: calculate-sha256
         run: echo "sha256=$(head -n 1 ${{ runner.temp }}/activate_env.sh | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
+      
+      - name: cat artifact
+        run: cat ${{ runner.temp }}/activate_env.sh
 
 
       - name: Restore Cache environment

@@ -38,12 +38,11 @@ jobs:
         run: |
           hash=$(shasum -a 256 "${{ steps.determine-env-file.outputs.env-file }}" | awk '{ print $1 }')
           echo "sha256=$hash" >> $GITHUB_OUTPUT
-          
-          # put the script to activate the environment in the file
-          echo "micromamba activate --file ${{ steps.determine-env-file.outputs.env-file }}" > activate_env.sh
 
           # put the key in a file
           echo "sha256=$hash" > activate_env.sh
+          # put the script to activate the environment in the file
+          echo "micromamba activate --file ${{ steps.determine-env-file.outputs.env-file }}" > activate_env.sh
 
       - name: ls
         run: ls *
