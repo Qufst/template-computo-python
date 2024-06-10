@@ -50,15 +50,15 @@ jobs:
       - name: Cache environment
         uses: actions/cache@v2
         with:
-          path: /micromamba
+          path: ~/micromamba/
           key: ${{ runner.os }}-mamba-${{ steps.calculate-sha256.sha256 }}
         
 
       - name: Deploy an artifact
         uses: actions/upload-artifact@v3
         with: 
-          name: activate_env.sh
-          path: /activate_env.sh
+          name: artifact-env
+          path: activate_env.sh
 
 
 

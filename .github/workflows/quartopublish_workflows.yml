@@ -22,7 +22,7 @@ jobs:
       - name: Restore artifact
         uses: actions/download-artifact@v3
         with: 
-          name: activate_env.sh
+          name: artifact-env
           path: ${{ runner.temp }}/
 
       - name: Restore name of sha from artifact
