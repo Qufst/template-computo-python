@@ -33,7 +33,7 @@ jobs:
       - name: Restore Cache environment
         uses: actions/cache@v2
         with:
-          path: ~/micromamba-bin
+          path: /home/runner/micromamba-bin/micromamba
           key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Activate the environment from the cache with the script in the artifact
