@@ -27,14 +27,14 @@ jobs:
 
       - name: Restore name of sha from artifact
         id: calculate-sha256
-        run: sha256=$(head -n 1 ${{ runner.temp }}/activate_env.sh)
+        run: echo "sha256=$(head -n 1 ${{ runner.temp }}/activate_env.sh | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
 
 
       - name: Restore Cache environment
         uses: actions/cache@v2
         with:
           path: ~/micromamba-bin
-          key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.sha256 }}
+          key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Activate the environment from the cache with the script in the artifact
         run: tail -n +2 ${{ runner.temp }}/activate_env.sh | source /dev/stdin # pour lire à partir de la deuxième ligne
