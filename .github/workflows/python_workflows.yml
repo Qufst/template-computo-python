@@ -51,7 +51,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/micromamba-bin/
-          key: ${{ runner.os }}-mamba-${{ steps.calculate-sha256.sha256 }}
+          key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.sha256 }}
         
 
       - name: Deploy an artifact
