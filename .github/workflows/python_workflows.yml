@@ -42,8 +42,10 @@ jobs:
           # put the key in a file
           echo "sha256=$hash" > activate_env.sh
           # put the script to activate the environment in the file
-          echo "micromamba activate --file ${{ steps.determine-env-file.outputs.env-file }}"
+          echo "micromamba activate --file ${{ steps.determine-env-file.outputs.env-file }}" > activate_env.sh
 
+      - name: ls
+        run: ls *
 
       - name: Cache environment
         uses: actions/cache@v2
