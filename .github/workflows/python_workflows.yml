@@ -76,7 +76,6 @@ jobs:
           $MICROMAMBA_BIN create -y -r $MICROMAMBA_ROOT -f $ENV_FILE --log-level warning --rc-file $BASHRC
 
           # Activer l'environnement
-          echo "Activating environment $ENV_NAME..."
           micromamba activate $ENV_NAME
           EOF
 
