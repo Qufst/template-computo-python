@@ -49,7 +49,6 @@ jobs:
           MICROMAMBA_BIN="$MICROMAMBA_DIR/micromamba"
           MICROMAMBA_ROOT="$HOME/micromamba"
           ENV_FILE="${{ steps.determine-env-file.outputs.env-file }}"
-          ENV_NAME="myenv"
           BASHRC="$HOME/.bashrc"
 
           # Initialiser Micromamba
@@ -72,12 +71,12 @@ jobs:
           source $BASHRC
 
           # Créer l'environnement avec micromamba
-          echo "Creating environment from $ENV_FILE..."
-          $MICROMAMBA_BIN create -y -r $MICROMAMBA_ROOT -f $ENV_FILE --log-level warning --rc-file $BASHRC
+          echo "Creating environment from myenv..."
+          $MICROMAMBA_BIN create -y -r $MICROMAMBA_ROOT -f myenv --log-level warning --rc-file $BASHRC
 
           # Activer l'environnement
           echo "Activating environment myenv..."
-          source $MICROMAMBA_BIN activate myenv
+          micromamba activate myenv
           EOF
 
       - name: ls
