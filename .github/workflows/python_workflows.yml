@@ -55,7 +55,7 @@ jobs:
 
           # Initialiser Micromamba
           echo "Initializing micromamba for bash..."
-          eval $MICROMAMBA_BIN shell init -s bash -p $MICROMAMBA_ROOT
+          eval "$MICROMAMBA_BIN shell init -s bash -p $MICROMAMBA_ROOT"
 
           # Ajouter les lignes d'initialisation à .bashrc
           echo "Adding micromamba initialization to $BASHRC..."
@@ -69,13 +69,9 @@ jobs:
           echo 'fi' >> $BASHRC
           echo 'unset __mamba_setup' >> $BASHRC
           echo 'exec $SHELL -l' >> $BASHRC
-          
+
           # Recharger le fichier .bashrc
           source $BASHRC
-
-          # Créer l'environnement avec micromamba
-          echo "Creating environment from $ENV_FILE..."
-          $MICROMAMBA_BIN create -y -r $MICROMAMBA_ROOT -f $ENV_FILE --log-level warning --rc-file $BASHRC
 
           # Activer l'environnement
           echo "Activating environment $ENV_NAME..."
