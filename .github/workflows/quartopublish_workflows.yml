@@ -37,7 +37,6 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path:
-            ~/micromamba-bin/
             ~/micromamba/
           key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
 
