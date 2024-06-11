@@ -55,7 +55,7 @@ jobs:
 
           # Initialiser Micromamba
           echo "Initializing micromamba for bash..."
-          $MICROMAMBA_BIN shell init -s bash -r $MICROMAMBA_ROOT --log-level warning --rc-file $BASHRC
+          echo /home/runner/micromamba-bin/micromamba shell init -s bash -r /home/runner/micromamba --log-level warning --rc-file /home/runner/work/_temp/setup-micromamba/.condarc
 
           # Ajouter les lignes d'initialisation à .bashrc
           echo "Adding micromamba initialization to $BASHRC..."
