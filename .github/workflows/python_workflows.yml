@@ -64,9 +64,6 @@ jobs:
             alias micromamba="$MAMBA_EXE"
           fi
           unset __mamba_setup
-          # <<< mamba initialize >>>
-
-          exec $SHELL -l
           
           echo "Creating environment from $ENV_FILE..."
           $MICROMAMBA_BIN create -y -r $MICROMAMBA_ROOT -f $ENV_FILE --log-level warning --rc-file $BASHRC
