@@ -59,7 +59,7 @@ jobs:
           
           echo "Creating environment from $ENV_FILE..."
           $MICROMAMBA_BIN create -y -r $MICROMAMBA_ROOT -f $ENV_FILE --log-level warning --rc-file $BASHRC
-          '/home/runner/micromamba-bin/micromamba' shell init -s bash -p $HOME/micromamba
+          micromamba shell hook --shell bash
           /home/runner/micromamba-bin/micromamba activate $ENV_NAME
           
           EOF
