@@ -34,7 +34,7 @@ jobs:
 
 
       - name: Restore Cache environment
-        uses: actions/cache@v2
+        uses: actions/cache/restore@v4
         with:
           path:
             ~/micromamba-bin/

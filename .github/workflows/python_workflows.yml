@@ -88,12 +88,12 @@ jobs:
         run: ls /home/runner/micromamba/
 
       - name: Cache environment
-        uses: actions/cache@v2
+        uses: actions/cache/save@v4
         with:
           path: 
             ~/micromamba-bin/
             ~/micromamba/
-            ~/work/_temp/setup-micromamba/.condarc
+            ~/work/_temp/setup-micromamba/
           key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
         
 
