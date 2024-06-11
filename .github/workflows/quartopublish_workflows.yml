@@ -36,8 +36,10 @@ jobs:
       - name: Restore Cache environment
         uses: actions/cache/restore@v4
         with:
-          path:
+          path: |
+            ~/micromamba-bin/
             ~/micromamba/
+            /home/runner/work/_temp/setup-micromamba/
           key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: ls
