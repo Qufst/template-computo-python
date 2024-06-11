@@ -67,7 +67,6 @@ jobs:
           echo 'else' >> $BASHRC
           echo '    alias micromamba="$MAMBA_EXE"' >> $BASHRC
           echo 'fi' >> $BASHRC
-          echo 'exec $SHELL -l' >> $BASHRC
           
 
           # Recharger le fichier .bashrc
