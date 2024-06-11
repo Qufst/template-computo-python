@@ -49,8 +49,6 @@ jobs:
               with:
                 environment-file: environment.yml
                 cache-environment: true
-
- 
           EOF
 
       - name: ls
