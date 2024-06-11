@@ -93,7 +93,6 @@ jobs:
           path: 
             ~/micromamba-bin/
             ~/micromamba/
-            ~/work/_temp/setup-micromamba/
           key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
         
 

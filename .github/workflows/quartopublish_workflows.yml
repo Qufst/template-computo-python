@@ -39,7 +39,6 @@ jobs:
           path:
             ~/micromamba-bin/
             ~/micromamba/
-            /home/runner/work/_temp/setup-micromamba/.condarc
           key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: ls
