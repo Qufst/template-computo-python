@@ -78,7 +78,7 @@ jobs:
 
           # Activer l'environnement
           echo "Activating environment $ENV_NAME..."
-          micromamba activate myenv
+          "$MICROMAMBA_BIN" activate myenv
           EOF
 
       - name: ls
