@@ -81,9 +81,9 @@ jobs:
           EOF
 
       - name: ls
-        run: ls /home/runner/micromamba-bin/micromamba
+        run: ls /home/runner/micromamba-bin/
       - name: ls
-        run: ls /home/runner/work/_temp/setup-micromamba/.condarc
+        run: ls /home/runner/work/_temp/setup-micromamba/
       - name: ls
         run: ls /home/runner/micromamba/
 
@@ -93,7 +93,7 @@ jobs:
           path: 
             ~/micromamba-bin/
             ~/micromamba/
-            /home/runner/work/_temp/setup-micromamba/.condarc
+            ~/work/_temp/setup-micromamba/.condarc
           key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
         
 
