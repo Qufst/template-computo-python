@@ -43,12 +43,12 @@ jobs:
           key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: ls
-        run: |
-          ls *
+        run: ls /home/runner/micromamba-bin/
+      - name: ls
+        run: ls /home/runner/work/_temp/setup-micromamba/
+      - name: ls
+        run: ls /home/runner/micromamba/
 
-      - name: ls2
-        run: |
-          /home/runner/micromamba-bin/micromamba
 
       - name: Activate the environment from the cache with the script in the artifact
         run: tail -n +2 ${{ runner.temp }}/activate_env.sh | source /dev/stdin # pour lire à partir de la deuxième ligne
