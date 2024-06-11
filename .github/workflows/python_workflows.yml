@@ -53,6 +53,10 @@ jobs:
           ENV_NAME="myenv"
           BASHRC="$HOME/.bashrc"
 
+          # Créer l'environnement avec micromamba
+          echo "Creating environment from $ENV_FILE..."
+          $MICROMAMBA_BIN create -y -r $MICROMAMBA_ROOT -f $ENV_FILE --log-level warning --rc-file $BASHRC
+
           # Initialiser Micromamba
           echo "Initializing micromamba for bash..."
           eval "$MICROMAMBA_BIN shell init -s bash -p $MICROMAMBA_ROOT"
