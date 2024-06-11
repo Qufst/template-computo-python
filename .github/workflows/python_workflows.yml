@@ -56,6 +56,14 @@ jobs:
           # Initialiser Micromamba
           eval "$(micromamba shell hook --shell bash)"
 
+
+          # Recharger le fichier .bashrc
+          source $BASHRC
+
+          # Créer l'environnement avec micromamba
+          echo "Creating environment from $ENV_FILE..."
+          $MICROMAMBA_BIN create -y -r $MICROMAMBA_ROOT -f $ENV_FILE --log-level warning --rc-file $BASHRC
+
           # Activer l'environnement
           echo "Activating environment $ENV_NAME..."
           $MICROMAMBA_BIN activate myenv
