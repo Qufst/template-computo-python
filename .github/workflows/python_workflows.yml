@@ -44,11 +44,11 @@ jobs:
           echo "sha256=$hash" > activate_env.sh
 
           cat << 'EOF' >> activate_env.sh
-          echo: | 
-            Run mamba-org/setup-micromamba@v1
-              with:
-                environment-file: environment.yml
-                cache-environment: true
+          
+          Run mamba-org/setup-micromamba@v1
+            with:
+              environment-file: environment.yml
+              cache-environment: true
           EOF
 
       - name: ls
