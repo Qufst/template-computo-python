@@ -55,8 +55,7 @@ jobs:
 
           # Initialiser Micromamba
           echo "Initializing micromamba for bash..."
-          /home/runner/micromamba-bin/micromamba shell init -s bash -r /home/runner/micromamba --log-level warning --rc-file /home/runner/work/_temp/setup-micromamba/.condarc  
-          
+          eval "$("$MICROMAMBA_BIN" shell hook --shell bash --root-prefix "$MICROMAMBA_ROOT")"          
           # Ajouter les lignes d'initialisation à .bashrc
           echo "Adding micromamba initialization to $BASHRC..."
           echo 'export MAMBA_EXE="$HOME/micromamba-bin/micromamba"' >> $BASHRC
@@ -78,7 +77,7 @@ jobs:
 
           # Activer l'environnement
           echo "Activating environment $ENV_NAME..."
-          "$MICROMAMBA_BIN" activate myenv
+          $MICROMAMBA_BIN activate myenv
           EOF
 
       - name: ls
