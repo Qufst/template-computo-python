@@ -53,15 +53,11 @@ jobs:
           ENV_NAME="myenv"
           BASHRC="$HOME/.bashrc"
 
-          # Créer l'environnement avec micromamba
-          echo "Creating environment from $ENV_FILE..."
-          $MICROMAMBA_BIN create -y -r $MICROMAMBA_ROOT -f $ENV_FILE --log-level warning --rc-file $BASHRC
-
           # Initialiser Micromamba
           echo "Initializing micromamba for bash..."
-          eval "$MICROMAMBA_BIN shell init -s bash -p $MICROMAMBA_ROOT"
 
           # Ajouter les lignes d'initialisation à .bashrc
+          echo "$MICROMAMBA_BIN shell init -s bash -p $MICROMAMBA_ROOT" >> $BASHRC
           echo "Adding micromamba initialization to $BASHRC..."
           echo 'export MAMBA_EXE="$HOME/micromamba-bin/micromamba"' >> $BASHRC
           echo 'export MAMBA_ROOT_PREFIX="$HOME/micromamba"' >> $BASHRC
@@ -73,9 +69,14 @@ jobs:
           echo 'fi' >> $BASHRC
           echo 'unset __mamba_setup' >> $BASHRC
           echo 'exec $SHELL -l' >> $BASHRC
+          
 
           # Recharger le fichier .bashrc
           source $BASHRC
+
+          # Créer l'environnement avec micromamba
+          echo "Creating environment from $ENV_FILE..."
+          $MICROMAMBA_BIN create -y -r $MICROMAMBA_ROOT -f $ENV_FILE --log-level warning --rc-file $BASHRC
 
           # Activer l'environnement
           echo "Activating environment $ENV_NAME..."
