@@ -81,12 +81,19 @@ jobs:
           EOF
 
       - name: ls
-        run: ls *
+        run: ls /home/runner/micromamba-bin/micromamba
+      - name: ls
+        run: ls /home/runner/work/_temp/setup-micromamba/.condarc
+      - name: ls
+        run: ls /home/runner/micromamba/
 
       - name: Cache environment
         uses: actions/cache@v2
         with:
-          path: /home/runner/micromamba/
+          path: 
+            ~/micromamba-bin/
+            ~/micromamba/
+            /home/runner/work/_temp/setup-micromamba/.condarc
           key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
         
 
