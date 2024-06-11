@@ -45,7 +45,7 @@ jobs:
 
           cat << 'EOF' >> activate_env.sh
           
-          Run mamba-org/setup-micromamba@v1
+          uses: mamba-org/setup-micromamba@v1
             with:
               environment-file: environment.yml
               cache-environment: true
