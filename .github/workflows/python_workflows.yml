@@ -76,7 +76,8 @@ jobs:
           $MICROMAMBA_BIN create -y -r $MICROMAMBA_ROOT -f $ENV_FILE --log-level warning --rc-file $BASHRC
 
           # Activer l'environnement
-          micromamba activate $ENV_NAME
+          echo "Activating environment $ENV_NAME..."
+          source activate /home/runner/micromamba/envs/myenv/bin
           EOF
 
       - name: ls
