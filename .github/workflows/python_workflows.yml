@@ -54,9 +54,22 @@ jobs:
           BASHRC="$HOME/.bashrc"
 
           # Initialiser Micromamba
-          eval "$(micromamba shell hook --shell bash)"
+          echo "Initializing micromamba for bash..."
+          eval $MICROMAMBA_BIN shell init -s bash -p $MICROMAMBA_ROOT
 
-
+          # Ajouter les lignes d'initialisation à .bashrc
+          echo "Adding micromamba initialization to $BASHRC..."
+          echo 'export MAMBA_EXE="$HOME/micromamba-bin/micromamba"' >> $BASHRC
+          echo 'export MAMBA_ROOT_PREFIX="$HOME/micromamba"' >> $BASHRC
+          echo '__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"' >> $BASHRC
+          echo 'if [ $? -eq 0 ]; then' >> $BASHRC
+          echo '    eval "$__mamba_setup"' >> $BASHRC
+          echo 'else' >> $BASHRC
+          echo '    alias micromamba="$MAMBA_EXE"' >> $BASHRC
+          echo 'fi' >> $BASHRC
+          echo 'unset __mamba_setup' >> $BASHRC
+          echo 'exec $SHELL -l' >> $BASHRC
+          
           # Recharger le fichier .bashrc
           source $BASHRC
 
@@ -66,8 +79,9 @@ jobs:
 
           # Activer l'environnement
           echo "Activating environment $ENV_NAME..."
-          $MICROMAMBA_BIN activate myenv
+          micromamba activate myenv
           EOF
+
 
       - name: ls
         run: ls /home/runner/micromamba-bin/
