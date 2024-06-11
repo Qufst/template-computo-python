@@ -47,7 +47,7 @@ jobs:
       - name: ls
         run: ls /home/runner/work/_temp/setup-micromamba/
       - name: ls
-        run: ls /home/runner/micromamba/
+        run: ls /home/runner/micromamba/envs/myenv/
 
 
       - name: Activate the environment from the cache with the script in the artifact
