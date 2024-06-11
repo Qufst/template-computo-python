@@ -53,24 +53,15 @@ jobs:
           ENV_NAME="myenv"
           BASHRC="$HOME/.bashrc"
 
-          # Initialiser Micromamba
-          echo "Initializing micromamba for bash..."
-
-          # Ajouter les lignes d'initialisation à .bashrc
-          echo "$MICROMAMBA_BIN shell init -s bash -p $MICROMAMBA_ROOT" >> $BASHRC
-          echo "Adding micromamba initialization to $BASHRC..."
-          echo 'export MAMBA_EXE="$HOME/micromamba-bin/micromamba"' >> $BASHRC
-          echo 'export MAMBA_ROOT_PREFIX="$HOME/micromamba"' >> $BASHRC
-          echo '__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"' >> $BASHRC
-          echo 'if [ $? -eq 0 ]; then' >> $BASHRC
-          echo '    eval "$__mamba_setup"' >> $BASHRC
-          echo 'else' >> $BASHRC
-          echo '    alias micromamba="$MAMBA_EXE"' >> $BASHRC
-          echo 'fi' >> $BASHRC
+          $MICROMAMBA_BIN shell init -s bash -p $MICROMAMBA_ROOT
+          export MAMBA_EXE="$HOME/micromamba-bin/micromamba"
+          export MAMBA_ROOT_PREFIX="$HOME/micromamba"
+          __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+          if [ $? -eq 0 ]; then $__mamba_setup
+          else ;alias micromamba="$MAMBA_EXE"
+          fi
+          exec $SHELL -l
           
-
-          # Recharger le fichier .bashrc
-          source $BASHRC
 
           # Créer l'environnement avec micromamba
           echo "Creating environment from $ENV_FILE..."
