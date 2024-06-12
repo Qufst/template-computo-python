@@ -75,8 +75,3 @@ jobs:
         run: |
           tail -n +2 /home/runner/work/_temp/activate_env.sh | source /dev/stdin
           
-      - name: Publish with Quarto + activate environment
-        env:
-          QUARTO_PUBLISHER: gh-pages
-        run: |
-          quarto publish template-computo-python.qmd

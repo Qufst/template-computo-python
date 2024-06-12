@@ -75,6 +75,8 @@ jobs:
           
           micromamba env list
 
+          quarto publish --publisher=gh-pages template-computo-python.qmd
+
       - name: ls
         run: ls /home/runner/micromamba-bin/
       - name: ls
