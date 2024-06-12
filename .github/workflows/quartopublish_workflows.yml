@@ -72,11 +72,12 @@ jobs:
           git config --global user.name "quarto-github-actions"
           
       - name: Activate the environment from the cache with the script in the artifact
-        run: tail -n +2 ${{ runner.temp }}/activate_env.sh | source /dev/stdin # pour lire à partir de la deuxième ligne
+        run: |
+          tail -n +2 ${{ runner.temp }}/activate_env.sh | source /dev/stdin
+          micromamba env list
           
       - name: Publish with Quarto + activate environment
         env:
           QUARTO_PUBLISHER: gh-pages
         run: |
-          micromamba activate "myenv"
           quarto publish template-computo-python.qmd
