@@ -44,10 +44,7 @@ jobs:
           echo "sha256=$hash" > activate_env.sh
 
           cat << 'EOF' >> activate_env.sh
-          
-          echo "Activating micromamba"
-          source /home/runner/micromamba-bin/micromamba
-          echo "Activating myenv"
+          eval "$(/home/runner/micromamba-bin/micromamba shell hook -s bash)"
           micromamba activate myenv
           
           EOF
