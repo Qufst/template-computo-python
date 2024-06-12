@@ -42,13 +42,6 @@ jobs:
             ~/work/_temp/setup-micromamba/
           key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
 
-      - name: ls
-        run: ls /home/runner/micromamba-bin/
-      - name: ls
-        run: ls /home/runner/work/_temp/setup-micromamba/
-      - name: ls
-        run: ls /home/runner/micromamba/envs/myenv/
-
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -74,9 +67,4 @@ jobs:
       - name: Activate the environment from the cache with the script in the artifact
         run: |
           tail -n +2 /home/runner/work/_temp/activate_env.sh | source /dev/stdin
-          
-      - name: Publish with Quarto + activate environment
-        env:
-          QUARTO_PUBLISHER: gh-pages
-        run: |
-          quarto publish template-computo-python.qmd
+
