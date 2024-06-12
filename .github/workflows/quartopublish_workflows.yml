@@ -78,5 +78,5 @@ jobs:
         env:
           QUARTO_PUBLISHER: gh-pages
         run: |
-          micromamba activate myenv
+          micromamba activate "myenv"
           quarto publish template-computo-python.qmd
