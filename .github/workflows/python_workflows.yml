@@ -89,7 +89,7 @@ jobs:
             ~/micromamba-bin/
             ~/micromamba/
             ~/work/_temp/setup-micromamba/
-          key: ${{ runner.os }}-${{ steps.calculate-sha256.outputs.sha256 }}
+          key: ${{ steps.calculate-sha256.outputs.sha256 }}
         
 
       - name: Deploy an artifact
