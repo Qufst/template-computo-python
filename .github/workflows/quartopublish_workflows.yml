@@ -50,9 +50,6 @@ jobs:
         run: ls /home/runner/micromamba/envs/myenv/
 
 
-      - name: Activate the environment from the cache with the script in the artifact
-        run: tail -n +2 ${{ runner.temp }}/activate_env.sh | source /dev/stdin # pour lire à partir de la deuxième ligne
-
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -74,7 +71,8 @@ jobs:
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
           
-          echo "Environment activated: $(basename $CONDA_PREFIX)"
+      - name: Activate the environment from the cache with the script in the artifact
+        run: tail -n +2 ${{ runner.temp }}/activate_env.sh | source /dev/stdin # pour lire à partir de la deuxième ligne
           
       - name: Publish with Quarto + activate environment
         env:
