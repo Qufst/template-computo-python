@@ -78,4 +78,5 @@ jobs:
         env:
           QUARTO_PUBLISHER: gh-pages
         run: |
+          echo "Environment activated: $(basename $CONDA_PREFIX)"
           quarto publish template-computo-python.qmd
