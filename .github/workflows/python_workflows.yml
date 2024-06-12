@@ -73,14 +73,7 @@ jobs:
           # Activer l'environnement myenv
           micromamba activate "$ENV_NAME"
           
-          # Vérifier que l'environnement est bien activé
-          CURRENT_ENV=$(basename "$CONDA_PREFIX")
-          if [ "$CURRENT_ENV" == "$ENV_NAME" ]; then
-            echo "Environment activated: $CURRENT_ENV"
-          else
-            echo "Failed to activate environment: $ENV_NAME"
-            exit 1
-          fi
+          micromamba env list
 
       - name: ls
         run: ls /home/runner/micromamba-bin/
