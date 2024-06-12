@@ -44,14 +44,36 @@ jobs:
           echo "sha256=$hash" > activate_env.sh
 
           cat << 'EOF' >> activate_env.sh
-          eval "$(/home/runner/micromamba-bin/micromamba shell hook -s bash)"
-          # Vérifier que le répertoire myenv existe
-          if [ ! -d /home/runner/micromamba/envs/myenv ]; then
-            echo "Environment myenv not found"
+          
+          MICROMAMBA_DIR="$HOME/micromamba-bin"
+          MICROMAMBA_BIN="$MICROMAMBA_DIR/micromamba"
+          MICROMAMBA_ROOT="$HOME/micromamba"
+          ENV_NAME="myenv"
+          BASHRC="$HOME/.bashrc"
+          
+          # Vérifier si micromamba existe et est exécutable
+          if [ ! -x "$MICROMAMBA_BIN" ]; then
+            echo "micromamba binary not found or not executable"
             exit 1
           fi
-          micromamba activate myenv
           
+          # Définir le préfixe racine
+          export MAMBA_ROOT_PREFIX="$MICROMAMBA_ROOT"
+          
+          # Initialiser micromamba pour le shell actuel
+          eval "$("$MICROMAMBA_BIN" shell hook -s bash)"
+          
+          # Vérifier que le répertoire myenv existe
+          if [ ! -d "$MICROMAMBA_ROOT/envs/$ENV_NAME" ]; then
+            echo "Environment $ENV_NAME not found"
+            exit 1
+          fi
+          
+          # Activer l'environnement myenv
+          micromamba activate "$ENV_NAME"
+          
+          # Vérifier que l'environnement est bien activé
+          echo "Environment activated: $(micromamba info --envs | grep '\*')"
           EOF
 
 
