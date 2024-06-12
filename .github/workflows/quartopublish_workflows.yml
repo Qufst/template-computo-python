@@ -58,11 +58,6 @@ jobs:
       - name: Install Computo extension for Quarto
         run: |
           quarto add --no-prompt computorg/computo-quarto-extension
-
-      - name: Configure Git
-        run: |
-          git config --global user.email "quentin.festor@etu.umontpellier.com"
-          git config --global user.name "quarto-github-actions"
           
       - name: Activate the environment from the cache with the script in the artifact
         run: |
