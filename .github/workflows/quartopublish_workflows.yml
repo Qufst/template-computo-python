@@ -73,7 +73,9 @@ jobs:
         run: |
           git config --global user.email "quentin.festor@etu.umontpellier.com"
           git config --global user.name "quarto-github-actions"
-
+          
+          echo "Environment activated: $(basename $CONDA_PREFIX)"
+          
       - name: Publish with Quarto + activate environment
         env:
           QUARTO_PUBLISHER: gh-pages
