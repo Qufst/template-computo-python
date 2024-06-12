@@ -45,6 +45,11 @@ jobs:
 
           cat << 'EOF' >> activate_env.sh
           eval "$(/home/runner/micromamba-bin/micromamba shell hook -s bash)"
+          # Vérifier que le répertoire myenv existe
+          if [ ! -d /home/runner/micromamba/envs/myenv ]; then
+            echo "Environment myenv not found"
+            exit 1
+          fi
           micromamba activate myenv
           
           EOF
