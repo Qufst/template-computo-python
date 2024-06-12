@@ -45,6 +45,7 @@ jobs:
 
           cat << 'EOF' >> activate_env.sh
           
+
           MICROMAMBA_DIR="$HOME/micromamba-bin"
           MICROMAMBA_BIN="$MICROMAMBA_DIR/micromamba"
           MICROMAMBA_ROOT="$HOME/micromamba"
@@ -73,8 +74,13 @@ jobs:
           micromamba activate "$ENV_NAME"
           
           # Vérifier que l'environnement est bien activé
-          echo "Environment activated: $(micromamba info --envs | grep '\*')"
-          EOF
+          CURRENT_ENV=$(basename "$CONDA_PREFIX")
+          if [ "$CURRENT_ENV" == "$ENV_NAME" ]; then
+            echo "Environment activated: $CURRENT_ENV"
+          else
+            echo "Failed to activate environment: $ENV_NAME"
+            exit 1
+          fi
 
 
       - name: ls
