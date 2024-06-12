@@ -45,22 +45,10 @@ jobs:
 
           cat << 'EOF' >> activate_env.sh
           
-          # Variables
-          MICROMAMBA_DIR="$HOME/micromamba-bin"
-          MICROMAMBA_BIN="$MICROMAMBA_DIR/micromamba"
-          MICROMAMBA_ROOT="$HOME/micromamba"
-          ENV_FILE="${{ steps.determine-env-file.outputs.env-file }}"
-          ENV_NAME="myenv"
-          BASHRC="$HOME/.bashrc"
-          
-          export PATH="$HOME/micromamba/bin:$PATH"
-          eval "$('/home/runner/micromamba-bin/micromamba' shell init -s bash -p $HOME/micromamba)"
-          source $HOME/.bashrc
-          
-          echo "Creating environment from $ENV_FILE..."
-          $MICROMAMBA_BIN create -y -r $MICROMAMBA_ROOT -f $ENV_FILE --log-level warning --rc-file $BASHRC
-          eval "$(/home/runner/micromamba-bin/micromamba shell hook -s posix)"
-          /home/runner/micromamba-bin/micromamba activate $ENV_NAME
+          echo "Activating micromamba"
+          source /home/runner/micromamba-bin/micromamba
+          echo "Activating myenv"
+          micromamba activate myenv
           
           EOF
 
