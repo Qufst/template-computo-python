@@ -73,7 +73,7 @@ jobs:
           
       - name: Activate the environment from the cache with the script in the artifact
         run: |
-          tail -n +2 ${{ runner.temp }}/activate_env.sh | source /dev/stdin
+          tail -n +2 /home/runner/work/_temp/activate_env.sh | source /dev/stdin
           
       - name: Publish with Quarto + activate environment
         env:
