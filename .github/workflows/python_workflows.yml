@@ -71,8 +71,9 @@ jobs:
           fi
           
           # Activer l'environnement myenv
-          eval "$(micromamba activate "$ENV_NAME")
+          micromamba activate "$ENV_NAME"
 
+          quarto publish gh-pages template-computo-python.qmd
 
       - name: ls
         run: ls /home/runner/micromamba-bin/
