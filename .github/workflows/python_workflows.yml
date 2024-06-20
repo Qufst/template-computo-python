@@ -34,14 +34,28 @@ jobs:
       - name: create a script
         run: touch activate_env.sh
 
+      - name: create a script with path for cache
+        run: touch path_env.sh
+
+      - name: Convert paths to JSON
+        id: convert
+        env:
+          paths: |
+            ~/micromamba-bin/
+            ~/micromamba/
+            ~/work/_temp/setup-micromamba/
+      
+        run: |
+          echo "${{ env.paths }}" >> path_env.sh
+
       - name: Calculate SHA-256 hash and put it in the script
         id: calculate-sha256
         run: |
           hash=$(shasum -a 256 "${{ steps.determine-env-file.outputs.env-file }}" | awk '{ print $1 }')
-          echo "sha256=micromamba-$hash" >> $GITHUB_OUTPUT
+          echo "sha256=${{ runner.os }}-micromamba-$hash" >> $GITHUB_OUTPUT
 
           # put the key in a file
-          echo "sha256=micromamba-$hash" > activate_env.sh
+          echo "sha256=${{ runner.os }}-micromamba-$hash" > activate_env.sh
 
           cat << 'EOF' >> activate_env.sh
           
@@ -75,21 +89,20 @@ jobs:
 
           quarto publish gh-pages template-computo-python.qmd
 
-      - name: ls
-        run: ls /home/runner/micromamba-bin/
-      - name: ls
-        run: ls /home/runner/work/_temp/setup-micromamba/
-      - name: ls
-        run: ls /home/runner/micromamba/
-
       - name: Cache environment
-        uses: actions/cache/save@v4
+        uses: actions/cache@v4
         with:
           path: |
             ~/micromamba-bin/
             ~/micromamba/
             ~/work/_temp/setup-micromamba/
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
+
+      - name: Deploy an artifact
+        uses: actions/upload-artifact@v3
+        with: 
+          name: artifact-cache
+          path: path_env.sh
         
 
       - name: Deploy an artifact
