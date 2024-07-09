@@ -21,4 +21,4 @@ jobs:
     with:
       config-path: './config/quarto_config.yml'
     secrets:
-      token: ${{ secrets.GITHUB_TOKEN }} 
+      token: ${{ secrets.GITHUB_TOKEN }}
